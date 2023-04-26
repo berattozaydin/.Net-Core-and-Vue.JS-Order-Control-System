@@ -34,11 +34,6 @@ const router = createRouter({
       component: () => import("@/pages/MaterialQualityPage.vue"),
     },
     {
-      path:"/receiptChart/:receiptId",
-      name:"Reçete Grafiği",
-      component:()=>import("@/pages/L2ReceiptChartPage.vue"),
-    },
-    {
       path:"/logs",
       name:"Log Kayıtları",
       component:()=>import("@/pages/LogPage.vue"),

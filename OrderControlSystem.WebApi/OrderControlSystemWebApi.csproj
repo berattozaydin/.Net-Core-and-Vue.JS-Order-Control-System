@@ -20,9 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\OrderControlSystem.BLL\OrderControlSystem.BLL.csproj" />
     <ProjectReference Include="..\OrderControlSystem.DAL\OrderControlSystem.DAL.csproj" />
-    <ProjectReference Include="..\OrderControlSystem.L2Service\OrderControlSystem.L2Service.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>

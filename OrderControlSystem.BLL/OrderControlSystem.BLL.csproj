@@ -24,7 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\OrderControlSystem.Core\OrderControlSystem.Core.csproj" />
     <ProjectReference Include="..\OrderControlSystem.DAL\OrderControlSystem.DAL.csproj" />
-    <ProjectReference Include="..\OrderControlSystem.L2Service\OrderControlSystem.L2Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -26,7 +26,6 @@
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OrderControlSystem.L2Service\OrderControlSystem.L2Service.csproj" />
     <ProjectReference Include="..\OrderControlSystem.Core\OrderControlSystem.Core.csproj" />
   </ItemGroup>
 </Project>
