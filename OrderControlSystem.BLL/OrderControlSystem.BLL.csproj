@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>9147e477-5bce-46d5-8317-74e570560bcf</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML.Report" Version="0.2.4" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.9" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
+    <PackageReference Include="ClosedXML" Version="0.95.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrderControlSystem.Core\OrderControlSystem.Core.csproj" />
+    <ProjectReference Include="..\OrderControlSystem.DAL\OrderControlSystem.DAL.csproj" />
+    <ProjectReference Include="..\OrderControlSystem.L2Service\OrderControlSystem.L2Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="AutoMapper" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Mapper\" />
+    <None Remove="Microsoft.Extensions.Configuration.UserSecrets" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="ClosedXML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mapper\" />
+    <Folder Include="Managers\" />
+  </ItemGroup>
+</Project>

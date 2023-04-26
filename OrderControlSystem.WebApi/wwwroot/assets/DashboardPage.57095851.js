@@ -1,0 +1,1 @@
+import{_ as o,o as e,c as r,a as s,r as c}from"./index.fb487db7.js";const t={},n={class:"grid mt-4"};function _(a,i){return e(),r("div",n,[(e(),s(c(a.destination)))])}var l=o(t,[["render",_]]);export{l as default};

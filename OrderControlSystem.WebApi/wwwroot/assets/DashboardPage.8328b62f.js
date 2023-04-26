@@ -1,0 +1,1 @@
+import{_ as a,o as e,c as s,a as c,r as t}from"./index.aafe1f7a.js";const n={},r={class:"grid mt-4"};function _(o,i){return e(),s("div",r,[(e(),c(t(o.destination)))])}const l=a(n,[["render",_]]);export{l as default};

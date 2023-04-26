@@ -1,0 +1,21 @@
+.p-tabview-nav-container {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1100 !important;
+  margin: 1px !important;
+}
+ 
+
+.router-link-active {
+  background-color: var(--surface-border);
+}
+.tp-highlight{
+  background: #ffffff !important;
+  border-color: #3B82F6 !important;
+  color: #3B82F6 !important;
+  
+}
+.p-menuitem-link{
+  min-height: 3.5rem !important;
+  
+}

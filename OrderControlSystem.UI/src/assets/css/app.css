@@ -1,0 +1,48 @@
+html {
+  font-size: 12px !important;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--gray-100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.tpChartPage {
+  background-color: white;
+  position: fixed;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+.dataTable{
+  font-size: 1.2rem !important;
+  font-weight: 1.2rem !important;
+}
+
+.tp-dataTag-bg{
+  background-color: coral !important;
+  color: coral;
+}
+.tp-dataEx-bg{
+  background-color: rgb(255, 0, 0) !important;
+  color: black;
+}
+.tp-dataCoi-bg{
+  background-color: rgb(255, 0, 0) !important;
+  color: black;
+  font-weight: 500;
+}
+.tp-dataCoisilislem-bg{
+  background-color: rgb(245, 248, 46) !important;
+  color: black;
+  font-weight: 500;
+}
+.tp-cusDetTable-bg{
+  background-color: rgb(30, 251, 93) !important;
+  color: black;
+}

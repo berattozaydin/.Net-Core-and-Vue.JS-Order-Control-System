@@ -1,0 +1,4 @@
+# OrderControlSystem
+
+FRONEND VUE.JS 
+BACKEND .NET CORE C#
