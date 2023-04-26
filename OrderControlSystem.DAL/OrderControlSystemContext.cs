@@ -30,7 +30,6 @@ namespace OrderControlSystem.DAL
         public virtual DbSet<ReceiptDetail> ReceiptDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<TreatmentType> TreatmentTypes { get; set; }
-        public virtual DbSet<WorkOrderNumberDto> WorkOrderNumberDto { get; set; }
         public virtual DbSet<CustomerOrderNumber> CustomerOrderNumberDto { get; set; }
 
 
