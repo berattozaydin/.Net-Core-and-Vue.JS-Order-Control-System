@@ -84,7 +84,6 @@ builder.Services.AddSingleton<LogManager>();
 builder.Services.AddScoped<CustomerOrderStatusManager>();
 builder.Services.AddScoped<AuthManager>();
 builder.Services.AddScoped<CustomerManager>();
-builder.Services.AddScoped<ReportManager>();
 
 
 
