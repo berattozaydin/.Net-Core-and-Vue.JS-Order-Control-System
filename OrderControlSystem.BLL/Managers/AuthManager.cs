@@ -12,7 +12,7 @@ using OrderControlSystem.DAL;
 using Ubiety.Dns.Core;
 using Result = OrderControlSystem.Core.Models.Result;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
     public class AuthManager
     {

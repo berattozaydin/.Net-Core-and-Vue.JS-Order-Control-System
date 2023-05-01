@@ -13,7 +13,7 @@ using OrderControlSystem.Core.Models;
 using OrderControlSystem.Core;
 using OrderControlSystem.BLL.Models;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
 	public class CustomerManager
 	{

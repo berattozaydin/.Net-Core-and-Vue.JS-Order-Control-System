@@ -9,7 +9,7 @@ using OrderControlSystem.Core.Models;
 using OrderControlSystem.DAL;
 using OrderControlSystem.DAL.Concrete;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
     public class ReceiptDetailManager
     {

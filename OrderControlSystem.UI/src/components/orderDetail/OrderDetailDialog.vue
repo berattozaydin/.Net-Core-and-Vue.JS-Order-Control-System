@@ -169,11 +169,11 @@ const orderDetailModel=ref({});
         <InputText id="name" v-model="orderDetailModel.name"/>
         <small class="p-error" v-if="(submited&&!orderDetailModel.name)">Lütfen Değer Giriniz</small> 
       </div>
-      <div class="p-field">
+      <!--<div class="p-field">
         <label for="drawingNo">Çizim Numarası*</label>
         <InputText id="drawingNo" v-model="orderDetailModel.drawingNo"/>
         <small class="p-error" v-if="(submited&&!orderDetailModel.drawingNo)">Lütfen Değer Giriniz</small> 
-      </div>
+      </div>-->
       <div class="p-field" style="display:none;">
         <label for="CustomerId">Müşteri Adı*</label>
         <CustomerDropdown id="CustomerId" v-model="orderDetailModel.customerId" disabled/>
@@ -191,11 +191,11 @@ const orderDetailModel=ref({});
       <Fieldset legend="Parça İşlemleri">
       <div class="grid">
         <div class="p-col-12 p-lg-3 p-md-6 p-sm-12">
-      <div class="p-field">
+      <!--<div class="p-field">
         <label for="MaterialQualityName">Malzeme Stok Numarası</label>
         <MatQualityDropdown id="MaterialQualityName" v-model="orderDetailModel.materialQualityId"/>
         <small class="p-error" v-if="submited&&!orderDetailModel.materialQualityId">Lütfen Değer Giriniz</small> 
-      </div> 
+      </div> -->
       <div class="p-field">
         <label for="TreatmentTypeId">İşlem Tipi*</label>
         <TreatmentTypeDropdown id="TreatmentTypeId" v-model="orderDetailModel.treatmentTypeId"/>
@@ -210,12 +210,12 @@ const orderDetailModel=ref({});
       <div class="grid">
         <div class="p-col-12 p-lg-3 p-md-6 p-sm-12">
       <div class="p-field">
-        <label for="PieceNumber">Parça Numarası*</label>
+        <label for="PieceNumber">Ürün Numarası*</label>
         <InputText id="PieceNumber" v-model="orderDetailModel.pieceNumber"/>
         <small class="p-error" v-if="submited&&!orderDetailModel.pieceNumber">Lütfen Değer Giriniz</small> 
       </div>
       <div class="p-field">
-        <label for="PieceWeight">Parça Ağırlığı*</label>
+        <label for="PieceWeight">Ürün Ağırlığı*</label>
         <InputText id="PieceWeight" v-model="orderDetailModel.pieceWeight"/>
         <small class="p-error" v-if="submited&&!orderDetailModel.pieceWeight">Lütfen Değer Giriniz</small> 
       </div> 
@@ -229,7 +229,7 @@ const orderDetailModel=ref({});
         <InputText id="PieceWeight" v-model="orderDetailModel.height"/>
         <small class="p-error" v-if="submited&&!orderDetailModel.height">Lütfen Değer Giriniz</small> 
       </div> 
-      <div class="p-field">
+     <!-- <div class="p-field">
         <label for="PieceWeight">Depth</label>
         <InputText id="PieceWeight" v-model="orderDetailModel.depth"/>
         <small class="p-error" v-if="submited&&!orderDetailModel.depth">Lütfen Değer Giriniz</small> 
@@ -243,7 +243,7 @@ const orderDetailModel=ref({});
         <label for="Hb">Önceki Sertlik(Hb)*</label>
         <InputText id="Hb" v-model="orderDetailModel.hb"/>
         <small class="p-error" v-if="submited&&!orderDetailModel.hb">Lütfen Değer Giriniz</small> 
-      </div> 
+      </div> -->
     </div>
     </div>
     </Fieldset>

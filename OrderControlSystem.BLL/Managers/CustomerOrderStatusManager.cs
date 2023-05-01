@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using OrderControlSystem.Core.Models;
 using OrderControlSystem.DAL;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
 	public class CustomerOrderStatusManager
 	{

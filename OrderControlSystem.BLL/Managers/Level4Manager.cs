@@ -18,7 +18,7 @@ using OrderControlSystem.DAL;
 using OrderControlSystem.Core.Models;
 using OrderControlSystem.BLL.Models;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
     public class Level4Manager
     {
@@ -26,8 +26,8 @@ namespace OrderControlSystem.Managers
         
         private readonly CustomerOrderManager customerOrderManager;
         private readonly CustomerOrderItemManager customerOrderItemManager;
-        private readonly Mapper mapperCo = new Mapper(Level4ConfigCustomerOrder());
-        private readonly Mapper mapperCoi = new Mapper(Level4ConfigCustomerOrderItem());
+        private readonly AutoMapper.Mapper mapperCo = new AutoMapper.Mapper(Level4ConfigCustomerOrder());
+        private readonly AutoMapper.Mapper mapperCoi = new AutoMapper.Mapper(Level4ConfigCustomerOrderItem());
         
         public Level4Manager(CustomerOrderManager customerOrderManager,CustomerOrderItemManager customerOrderItemManager,OrderControlContext orderControlContext)
         {
@@ -60,13 +60,8 @@ namespace OrderControlSystem.Managers
                     CustomerOrderItemId = co.CustomerOrderItemId,
                     CustomerOrderItemStatusId = co.CustomerOrderItemStatusId,
                     Name = co.Name,
-                    DrawingNo = co.DrawingNo,
-                    Depth = co.Depth,
                     FinishDate = DateTime.Parse(co.FinishDate),
-                    Hb = co.Hb,
-                    Hrc = co.Hrc,
                     Height = co.Height,
-                    MaterialQualityId = co.MaterialQualityId,
                     PieceNumber = co.PieceNumber,
                     PieceWeight = co.PieceWeight,
                     TreatmentTypeId = co.TreatmentTypeId,
@@ -174,13 +169,8 @@ namespace OrderControlSystem.Managers
                         CustomerOrderItemId = co.CustomerOrderItemId,
                         CustomerOrderItemStatusId = co.CustomerOrderItemStatusId,
                         Name = co.Name,
-                        DrawingNo = co.DrawingNo,
-                        Depth = co.Depth,
                         FinishDate = DateTime.Parse(co.FinishDate),
-                        Hb = co.Hb,
-                        Hrc = co.Hrc,
                         Height = co.Height,
-                        MaterialQualityId = co.MaterialQualityId,
                         PieceNumber = co.PieceNumber,
                         PieceWeight = co.PieceWeight,
                         TreatmentTypeId = co.TreatmentTypeId,
@@ -262,16 +252,11 @@ namespace OrderControlSystem.Managers
                 CustomerOrderItemStatusId = customerOrderItem.CustomerOrderItemStatusId,
                 CustomerId = customerOrderItem.CustomerId,
                 TreatmentTypeId = customerOrderItem.TreatmentTypeId,
-                MaterialQualityId = customerOrderItem.MaterialQualityId,
                 Name = customerOrderItem.Name,
-                DrawingNo = customerOrderItem.DrawingNo,
                 PieceNumber = customerOrderItem.PieceNumber,
                 PieceWeight = customerOrderItem.PieceWeight,
                 Width = customerOrderItem.Width,
                 Height = customerOrderItem.Height,
-                Depth = customerOrderItem.Depth,
-                Hrc = customerOrderItem.Hrc,
-                Hb = customerOrderItem.Hb,
                 CreateDate = customerOrderItem.CreateDate,
                 RegistrationDate = customerOrderItem.RegistrationDate,
                 RequestDate = customerOrderItem.RequestDate,

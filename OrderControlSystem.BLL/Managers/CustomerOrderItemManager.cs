@@ -16,7 +16,7 @@ using OrderControlSystem.Core.Models;
 using OrderControlSystem.DAL.Models;
 using OrderControlSystem.BLL.Models;
 
-namespace OrderControlSystem
+namespace OrderControlSystem.BLL.Managers
 {
     public class CustomerOrderItemManager
     {
@@ -58,7 +58,6 @@ namespace OrderControlSystem
             var list = new List<CustomerOrderItem>();
        
             response.Value = (from coi in customerOrderItemList
-                             join maq in materialQuality on coi.MaterialQualityId equals maq.MaterialQualityId
                               join tret in treatmentType on coi.TreatmentTypeId equals tret.TreatmentTypeId
                               join cois in customerOrderItemStatus on coi.CustomerOrderItemStatusId equals cois.CustomerOrderItemStatusId
                               join cu in customer on coi.CustomerId equals cu.CustomerId
@@ -84,17 +83,10 @@ namespace OrderControlSystem
                                   CustomerOrderItemStatusName=coi.CustomerOrderItemStatus.Name,
                                   CustomerOrderItemStatusId=coi.CustomerOrderItemStatusId,
                                   CustomerOrderId=coi.CustomerOrderId,
-                                  DrawingNo=coi.DrawingNo,
-                                  Depth=coi.Depth,
-                                  Hb=coi.Hb,
-                                  Hrc=coi.Hrc,
                                   Height=coi.Height,
                                   Width=coi.Width,
                                   PieceNumber=coi.PieceNumber,
                                   PieceWeight=coi.PieceWeight,
-                                  MaterialQualityId=coi.MaterialQualityId,
-                                  MaterialQualityName=coi.MaterialQuality.Name,
-                                  //MaterialQualityUnknown=coi?.MaterialQualityUnknown,
                                   TreatmentTypeId=coi.TreatmentTypeId,
                                   TreatmentTypeName=coi.TreatmentType.Name,
                                   Remark=coi.Remark,
@@ -123,14 +115,8 @@ namespace OrderControlSystem
             customerOrderItem.CustomerOrderItemStatusId = item.CustomerOrderItemStatusId;
             customerOrderItem.CreateDate = item.CreateDate;
             customerOrderItem.Name = item.Name;
-            customerOrderItem.DrawingNo = item.DrawingNo;
-            customerOrderItem.Depth = item.Depth;
             customerOrderItem.FinishDate = item.FinishDate;
-            customerOrderItem.Hb = item.Hb;
             customerOrderItem.Height = item.Height;
-            customerOrderItem.Hrc = item.Hrc;
-            customerOrderItem.MaterialQualityId = item.MaterialQualityId;
-            customerOrderItem.MaterialQualityUnknown = item.MaterialQualityUnknown;
             customerOrderItem.PieceNumber = item.PieceNumber;
             customerOrderItem.PieceWeight = item.PieceWeight;
             customerOrderItem.Remark = item.Remark;

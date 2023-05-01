@@ -12,7 +12,7 @@ using OrderControlSystem.Core.Models;
 using OrderControlSystem.DAL.Models;
 using OrderControlSystem.BLL.Models.FilterModels;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
     public class ReceiptManager
     {

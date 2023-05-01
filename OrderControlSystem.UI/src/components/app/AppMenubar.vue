@@ -41,7 +41,7 @@ export default {
         to: "/Accounts",
       }, 
       {
-        label: "Reçeteler",
+        label: "İşlem Adımları",
         icon: PrimeIcons.LIST, 
         to: "/receipts",
       }, 

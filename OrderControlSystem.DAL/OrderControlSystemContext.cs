@@ -176,7 +176,7 @@ namespace OrderControlSystem.DAL
 
                 entity.HasIndex(e => e.CustomerOrderId, "CustomerOrderItem_ibfk_5");
 
-                entity.HasIndex(e => e.MaterialQualityId, "MaterialQualityId");
+                //entity.HasIndex(e => e.MaterialQualityId, "MaterialQualityId");
 
                 entity.HasIndex(e => e.TreatmentTypeId, "TreatmentTypeId");
 
@@ -191,15 +191,15 @@ namespace OrderControlSystem.DAL
                     .HasMaxLength(36)
                     .IsFixedLength(true);
 
-                entity.Property(e => e.DrawingNo)
+               /* entity.Property(e => e.DrawingNo)
                     .IsRequired()
-                    .HasMaxLength(30);
+                    .HasMaxLength(30);*/
 
                 entity.Property(e => e.FilePath).HasMaxLength(250);
 
                 entity.Property(e => e.FinishDate).HasColumnType("date");
 
-                entity.Property(e => e.MaterialQualityUnknown).HasMaxLength(35);
+                //entity.Property(e => e.MaterialQualityUnknown).HasMaxLength(35);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -231,10 +231,10 @@ namespace OrderControlSystem.DAL
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("CustomerOrderItemStatus");
 
-                entity.HasOne(d => d.MaterialQuality)
+                /*entity.HasOne(d => d.MaterialQuality)
                     .WithMany(p => p.CustomerOrderItems)
                     .HasForeignKey(d => d.MaterialQualityId)
-                    .HasConstraintName("CustomerOrderItem_ibfk_4");
+                    .HasConstraintName("CustomerOrderItem_ibfk_4");*/
 
                 entity.HasOne(d => d.TreatmentType)
                     .WithMany(p => p.CustomerOrderItems)

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
     public class ReportManager
     {
@@ -41,13 +41,11 @@ namespace OrderControlSystem.Managers
                 CompanyName = customerOrderItem.Customer?.CompanyName,
                 StartDate = customerOrderItem.StartDate?.ToShortDateString(),
                 TreatmentTypeName = customerOrderItem.TreatmentType?.Name,
-                DrawingNo = customerOrderItem.DrawingNo,
                 Name = customerOrderItem.Name,
                 PieceNumber = customerOrderItem.PieceNumber,
                 PieceWeight = customerOrderItem.PieceWeight,
                 Width = customerOrderItem.Width,
                 Height = customerOrderItem.Height,
-                Depth = customerOrderItem.Depth,
                 ShippingDate = customerOrderItem.ShippingDate?.ToShortDateString(),
             };
 

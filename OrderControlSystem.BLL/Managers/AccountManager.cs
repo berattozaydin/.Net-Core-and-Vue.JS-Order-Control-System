@@ -9,7 +9,7 @@ using OrderControlSystem.Core.Models;
 using OrderControlSystem.DAL;
 using OrderControlSystem.DAL.Models;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
 	public class AccountManager
 	{

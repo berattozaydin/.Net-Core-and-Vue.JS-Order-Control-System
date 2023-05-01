@@ -6,7 +6,7 @@ using System.Linq;
 using OrderControlSystem.DAL;
 using OrderControlSystem.Core.Models;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
     public class LogManager
     {

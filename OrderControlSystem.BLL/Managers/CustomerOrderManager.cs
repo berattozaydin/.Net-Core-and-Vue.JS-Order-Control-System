@@ -14,7 +14,7 @@ using OrderControlSystem.Core.Models;
 using OrderControlSystem.DAL.Models;
 using OrderControlSystem.BLL.Models.FilterModels;
 
-namespace OrderControlSystem.Managers
+namespace OrderControlSystem.BLL.Managers
 {
     public class CustomerOrderManager
     {
@@ -214,16 +214,11 @@ namespace OrderControlSystem.Managers
                         TreatmentTypeName = x.TreatmentType.Name,
                         TreatmentTypeId = x.TreatmentTypeId,
                         CreateDate = x.CreateDate,
-                        DrawingNo = x.DrawingNo,
                         CustomerCompanyName = x.Customer.CompanyName,
                         PieceNumber = x.PieceNumber,
                         PieceWeight = x.PieceWeight,
                         RegistrationDate = x.RegistrationDate,
                         Name = x.Name,
-                        MaterialQualityId = x.MaterialQualityId,
-                        Hb = x.Hb,
-                        Hrc = x.Hrc
-
                     }).ToList();
                     
 
@@ -246,19 +241,14 @@ namespace OrderControlSystem.Managers
                         TreatmentType = x.TreatmentType,
                         CustomerOrderItemStatus = x.CustomerOrderItemStatus,
                         Customer = x.Customer,
-                        MaterialQualityId = x.MaterialQualityId,
                         CustomerOrderItemStatusId = x.CustomerOrderItemStatusId,
                         CustomerId = x.CustomerId,
                         CreateDate = x.CreateDate,
                         TreatmentTypeId = x.TreatmentTypeId,
-                        DrawingNo = x.DrawingNo,
-                        Depth = x.Depth,
                         ShippingDate = x.ShippingDate,
                         StartDate = x.StartDate,
                         FinishDate = x.FinishDate,
                         RegistrationDate = x.RegistrationDate,
-                        Hb = x.Hb,
-                        Hrc = x.Hrc,
                         PieceNumber = x.PieceNumber,
                         PieceWeight = x.PieceWeight,
                         Name = x.Name,
