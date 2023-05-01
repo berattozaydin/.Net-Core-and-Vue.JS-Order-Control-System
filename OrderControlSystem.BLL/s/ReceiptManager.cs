@@ -52,6 +52,7 @@ namespace OrderControlSystem.BLL.Managers
         public void Delete(int receiptId)
         {
             var item = orderControlContext.Receipts.FirstOrDefault(x => x.ReceiptId == receiptId);
+          
             receiptRepository.Delete(item);
         }
        
@@ -148,8 +149,6 @@ namespace OrderControlSystem.BLL.Managers
                     msg="Hata. Sipariş Güncellenemedi."
                 };
             }
-            
- 
         }
     }
 }

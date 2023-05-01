@@ -49,8 +49,7 @@ namespace OrderControlSystem.Managers
             else
             {
                 response = false;
-                args = new ReturnResult { success = 0, msg = "Sipariş Güncelleme Başarısız" };
-                return args;
+               
             }
             
             if(response == true)
@@ -128,7 +127,7 @@ namespace OrderControlSystem.Managers
             }
             return query;
         }
-        private IQueryable<OrderControlSystem.DAL.Models.CustomerOrderWithDetail> FilterCustomerOrderWithDetail(CustomerOrderWithDetailFilterModel filterModel, IQueryable<OrderControlSystem.DAL.Models.CustomerOrderWithDetail> query)
+        private IQueryable<CustomerOrderWithDetail> FilterCustomerOrderWithDetail(CustomerOrderWithDetailFilterModel filterModel, IQueryable<OrderControlSystem.DAL.Models.CustomerOrderWithDetail> query)
         {
             if (filterModel.CustomerOrderId != null)
             {
