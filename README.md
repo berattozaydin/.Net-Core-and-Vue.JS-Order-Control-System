@@ -3,4 +3,5 @@
 FRONEND VUE.JS 
 BACKEND .NET CORE C#
 
-First install UI layer npm install && npm run dev
+Firstly install UI layer npm install && npm run dev
+Secondly upload the sql file to mysql server 
