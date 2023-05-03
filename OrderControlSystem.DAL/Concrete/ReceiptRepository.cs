@@ -28,7 +28,7 @@ namespace OrderControlSystem.DAL.Concrete
         {
             return _object.Select(x => new ReceiptWithDetail
             {
-                ReceiptId = x.ProcessStepsId,
+                ProcessStepsId = x.ProcessStepsId,
                 Name = x.Name,
                 Remark = x.Remark,
                 TreatmentTypeId = x.TreatmentTypeId,

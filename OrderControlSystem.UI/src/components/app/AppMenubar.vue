@@ -45,11 +45,6 @@ export default {
         icon: PrimeIcons.LIST, 
         to: "/receipts",
       }, 
-      {
-        label: "Kaliteler",
-        icon: PrimeIcons.CHECK_SQUARE, 
-        to: "/materialqualities",
-      },
       
     ];
     this.userMenuItems = [

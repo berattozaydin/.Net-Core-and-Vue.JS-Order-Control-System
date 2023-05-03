@@ -20,7 +20,6 @@ import useCustomerOrderDetailApi from "../../api/customerOrderDetail.api";
 import useReportApi from "../../api/report.api";
 import { downloadFile } from "../../helper";
 import useTreatmentTypeApi from "../../api/tretmentType.api";
-import useMaterialQualityApi from "../../api/materialQuality.api";
 
 const filters = ref({
   global: { value: "", matchMode: FilterMatchMode.CONTAINS },
@@ -29,7 +28,6 @@ const filters = ref({
 const customerOrderDetailApi = useCustomerOrderDetailApi();
 const reportApi = useReportApi();
 const customerApi = useCustomerApi();
-const materialQualityApi = useMaterialQualityApi();
 const treatmentTypeApi = useTreatmentTypeApi();
 const orderDetailDialogType = ref(DIALOG_TYPE.ADD);
 const showDialog = ref(false);
@@ -42,7 +40,6 @@ const showReportDlg = ref(false);
 const selectedFile = ref(null);
 const customer = ref([]);
 const customerOrderItemStatus = ref([]);
-const materialQuality= ref([]);
 const treatmentType =ref([]);
 
 onMounted(async () => {
@@ -156,16 +153,10 @@ function rowClass(e){
           </template>
       </Column>
       <Column field="name" header="Sipariş Adı" sortable> </Column>
-      <Column field="drawingNo" header="Çizim Numarası" sortable> </Column>
       <Column field="width" header="Genişlik" sortable> </Column>
       <Column field="height" header="Yükseklik" sortable> </Column>
-      <Column field="depth" header="Derinlik" sortable> </Column>
       <Column field="pieceNumber" header="Parça Numarası" sortable> </Column>
       <Column field="pieceWeight" header="Parça Ağırlığı" sortable> </Column>
-      <Column field="hrc" header="Önceki Sertlik(HRC)" sortable> </Column>
-      <Column field="hb" header="Önceki Sertlik(HB)" sortable> </Column>
-      <Column field="nextHb" header="Sonraki Sertlik(Hb)" sortable> </Column>
-      <Column field="nextHrc" header="Sonraki Sertlik(Hrc)" sortable> </Column>
       <Column field="treatmentTypeId" header="İşlem Tipi" sortable>
         <template #body="slotProps">
             {{ props.dialogType == DIALOG_TYPE.UPD ? slotProps.data?.treatmentTypeName:treatmentType?.filter(x=>x.treatmentTypeId == slotProps.data?.treatmentTypeId)[0]?.name }}

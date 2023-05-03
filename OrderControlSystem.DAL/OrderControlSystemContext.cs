@@ -23,7 +23,6 @@ namespace OrderControlSystem.DAL
         public virtual DbSet<CustomerOrderItem> CustomerOrderItems { get; set; }
         public virtual DbSet<CustomerOrderItemStatus> CustomerOrderItemStatuses { get; set; }
         public virtual DbSet<CustomerOrderStatus> CustomerOrderStatuses { get; set; }
-        public virtual DbSet<Furnance> Furnances { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<ProcessSteps> ProcessStepss { get; set; }
         public virtual DbSet<ReceiptDetail> ReceiptDetails { get; set; }
@@ -241,15 +240,6 @@ namespace OrderControlSystem.DAL
             modelBuilder.Entity<CustomerOrderStatus>(entity =>
             {
                 entity.ToTable("CustomerOrderStatus");
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(25);
-            });
-
-            modelBuilder.Entity<Furnance>(entity =>
-            {
-                entity.ToTable("Furnance");
 
                 entity.Property(e => e.Name)
                     .IsRequired()

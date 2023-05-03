@@ -95,19 +95,19 @@ namespace OrderControlSystem.BLL.Managers
         {
             if (filterModel.SortOrder == 1)
             {
-                query = query.OrderBy(x => x.ReceiptId);
+                query = query.OrderBy(x => x.ProcessStepsId);
             }
             if (filterModel.SortOrder == -1)
             {
-                query = query.OrderByDescending(x => x.ReceiptId);
+                query = query.OrderByDescending(x => x.ProcessStepsId);
             }
             return query;
         }
             private IQueryable<ReceiptWithDetail> FilterReceiptWithDetail(ReceiptWithFilterModel filterModel, IQueryable<ReceiptWithDetail> query)
         {
-            if (filterModel.ReceiptId != null)
+            if (filterModel.ProcessStepsId != null)
             {
-                query = query.Where(x => x.ReceiptId == filterModel.ReceiptId);
+                query = query.Where(x => x.ProcessStepsId == filterModel.ProcessStepsId);
             }
             if (filterModel.FurnaceName != null)
             {
