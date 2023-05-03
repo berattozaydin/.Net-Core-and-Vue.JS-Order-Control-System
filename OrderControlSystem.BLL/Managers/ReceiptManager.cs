@@ -14,22 +14,22 @@ using OrderControlSystem.BLL.Models.FilterModels;
 
 namespace OrderControlSystem.BLL.Managers
 {
-    public class ReceiptManager
+    public class ProcessStepsManager
     {
-        ReceiptRepository receiptRepository;
+        ProcessStepsRepository processStepsRepository;
         TreatmentTypeRepository treatmentTypeRepository;
         private readonly OrderControlContext orderControlContext;
-        public ReceiptManager(OrderControlContext orderControlContext, ReceiptRepository receiptRepository,TreatmentTypeRepository treatmentTypeRepository)
+        public ProcessStepsManager(OrderControlContext orderControlContext, ProcessStepsRepository receiptRepository,TreatmentTypeRepository treatmentTypeRepository)
         {
-            this.receiptRepository = receiptRepository;
+            this.processStepsRepository = receiptRepository;
             this.treatmentTypeRepository = treatmentTypeRepository;
             this.orderControlContext = orderControlContext;
 
         }
-        public ReturnResult Add(Receipt item)
+        public ReturnResult Add(ProcessSteps item)
         {
             
-            orderControlContext.Receipts.Add(item);
+            orderControlContext.ProcessStepss.Add(item);
             if ((orderControlContext.SaveChanges()) >0)
             {
                     return new ReturnResult
@@ -51,36 +51,36 @@ namespace OrderControlSystem.BLL.Managers
 
         public void Delete(int receiptId)
         {
-            var item = orderControlContext.Receipts.FirstOrDefault(x => x.ReceiptId == receiptId);
-            receiptRepository.Delete(item);
+            var item = orderControlContext.ProcessStepss.FirstOrDefault(x => x.ProcessStepsId == receiptId);
+            processStepsRepository.Delete(item);
         }
        
-        public  Response<List<Receipt>> List()
+        public  Response<List<ProcessSteps>> List()
         {
-            Response<List<Receipt>> response = new();
-            response.Value = (from r in receiptRepository.List()
+            Response<List<ProcessSteps>> response = new();
+            response.Value = (from r in processStepsRepository.List()
                               join t in treatmentTypeRepository.List() on r.TreatmentTypeId equals t.TreatmentTypeId
                               
-                              select new Receipt() {
+                              select new ProcessSteps() {
                                     
                                     TreatmentType = t,
-                                    ReceiptId = r.ReceiptId,
+                                  ProcessStepsId = r.ProcessStepsId,
                                     Name=r.Name,
                                     Remark = r.Remark
                               }).ToList();
             return response;
         }
 
-        public Response<List<Receipt>> List(Expression<Func<Receipt, bool>> filter)
+        public Response<List<ProcessSteps>> List(Expression<Func<ProcessSteps, bool>> filter)
         {
-            Response<List<Receipt>> response = new();
-            response.Value = orderControlContext.Receipts.Where(filter).ToList();
+            Response<List<ProcessSteps>> response = new();
+            response.Value = orderControlContext.ProcessStepss.Where(filter).ToList();
             return response;
         }
        
         public Response<List<ReceiptWithDetail>> ListWithDetail(ReceiptWithFilterModel filterModel)
         {
-            var query = receiptRepository.ListWithDetail();
+            var query = processStepsRepository.ListWithDetail();
             
             query = FilterReceiptWithDetail(filterModel,query);
             query = SortReceiptWithDetail(filterModel, query);
@@ -123,15 +123,14 @@ namespace OrderControlSystem.BLL.Managers
             }
             return query;
         }
-        public ReturnResult Update(Receipt item)
+        public ReturnResult Update(ProcessSteps item)
         {
-            var receiptUpdate = orderControlContext.Receipts.FirstOrDefault(x=>x.ReceiptId==item.ReceiptId);
+            var receiptUpdate = orderControlContext.ProcessStepss.FirstOrDefault(x=>x.ProcessStepsId == item.ProcessStepsId);
             receiptUpdate.TreatmentTypeId = item.TreatmentTypeId;
             receiptUpdate.Remark = item.Remark;
-            receiptUpdate.FurnanceId= item.FurnanceId;
             receiptUpdate.Name = item.Name;
-            receiptUpdate.ReceiptDetails = item.ReceiptDetails;
-            orderControlContext.Receipts.Update(receiptUpdate);
+            receiptUpdate.ProcessStepsDetails = item.ProcessStepsDetails;
+            orderControlContext.ProcessStepss.Update(receiptUpdate);
             if (orderControlContext.SaveChanges() > 0)
             {
                     return new ReturnResult

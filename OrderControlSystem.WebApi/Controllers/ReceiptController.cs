@@ -11,16 +11,16 @@ namespace OrderControlSystemWebApi.Controllers
     [ApiController]
     public class ReceiptController : ControllerBase
     {
-        readonly ReceiptManager receiptManager;
+        readonly ProcessStepsManager receiptManager;
 
-        public ReceiptController(ReceiptManager receiptManager)
+        public ReceiptController(ProcessStepsManager receiptManager)
         {
             this.receiptManager = receiptManager;
         }
 
         [HttpPost]
         [LogHandleMiddleware("Reçete Eklendi")]
-        public ReturnResult AddReceipt(Receipt item)
+        public ReturnResult AddReceipt(ProcessSteps item)
         {
             var res = receiptManager.Add(item);
             return res;
@@ -28,7 +28,7 @@ namespace OrderControlSystemWebApi.Controllers
         [HttpGet]
         public IActionResult GetReceipt([FromQuery] int receiptId)
         {
-            var receipt = receiptManager.List(x => x.ReceiptId == receiptId);
+            var receipt = receiptManager.List(x => x.ProcessStepsId == receiptId);
             return Ok(receipt);
         }
         [HttpGet]
@@ -45,7 +45,7 @@ namespace OrderControlSystemWebApi.Controllers
         }
         [HttpPost]
         [LogHandleMiddleware("Reçete Güncellendi")]
-        public ReturnResult UpdateReceipt(Receipt receipt)
+        public ReturnResult UpdateReceipt(ProcessSteps receipt)
         {
             var res = receiptManager.Update(receipt);
             return res;

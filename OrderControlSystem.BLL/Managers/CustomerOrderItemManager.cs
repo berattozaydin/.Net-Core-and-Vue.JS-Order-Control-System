@@ -21,13 +21,11 @@ namespace OrderControlSystem.BLL.Managers
     public class CustomerOrderItemManager
     {
         readonly CustomerOrderItemRepository customerOrderItemRepository;
-        readonly MaterialQualityRepository materialQualityRepository;
         readonly TreatmentTypeRepository treatmentTypeRepository;
         readonly OrderControlContext orderControlContext;
-        public CustomerOrderItemManager(TreatmentTypeRepository treatmentTypeRepository, MaterialQualityRepository materialQualityRepository, OrderControlContext orderControlContext, CustomerOrderItemRepository customerOrderItemRepository)
+        public CustomerOrderItemManager(TreatmentTypeRepository treatmentTypeRepository, OrderControlContext orderControlContext, CustomerOrderItemRepository customerOrderItemRepository)
         {
             this.customerOrderItemRepository = customerOrderItemRepository;
-            this.materialQualityRepository = materialQualityRepository;
             this.treatmentTypeRepository = treatmentTypeRepository;
             this.orderControlContext = orderControlContext;
         }
@@ -51,7 +49,6 @@ namespace OrderControlSystem.BLL.Managers
         {
             Response<List<CustomerOrderItem>> response = new();
             var customerOrderItemList = customerOrderItemRepository.List();
-            var materialQuality = materialQualityRepository.List();
             var treatmentType = treatmentTypeRepository.List();
             var customerOrderItemStatus = orderControlContext.CustomerOrderItemStatuses.ToList();
             var customer = orderControlContext.Customers.ToList();
@@ -70,7 +67,6 @@ namespace OrderControlSystem.BLL.Managers
         {
             Response<List<CustomerOrderItemWithDetail>> response = new();
             var customerOrderItemList = customerOrderItemRepository.List(filter);
-            var materialQuality = materialQualityRepository.List();
             var treatmentType = treatmentTypeRepository.List();
             var customerOrderItemStatus = orderControlContext.CustomerOrderItemStatuses.ToList();
             var customer = orderControlContext.Customers.ToList();

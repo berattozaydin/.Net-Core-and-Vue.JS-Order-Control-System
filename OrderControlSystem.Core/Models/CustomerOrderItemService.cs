@@ -9,8 +9,6 @@
         public string Name { get; set; }
         public string DrawingNo { get; set; }
         public int TreatmentTypeId { get; set; }
-        public int? MaterialQualityId { get; set; }
-        public string? MaterialQualityUnknown { get; set; }
         public int PieceNumber { get; set; }
         public int PieceWeight { get; set; }
         public int Width { get; set; }

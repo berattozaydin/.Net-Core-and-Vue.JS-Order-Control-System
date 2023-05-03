@@ -10,6 +10,6 @@ namespace OrderControlSystem.DAL
         public int Temperature { get; set; }
         public int StepNo { get; set; }
 
-        public virtual Receipt Receipt { get; set; }
+        public virtual ProcessSteps Receipt { get; set; }
     }
 }

@@ -210,7 +210,6 @@ namespace OrderControlSystem.BLL.Managers
                         CustomerId = x.CustomerId,
                         CustomerOrderItemId = x.CustomerOrderItemId,
                         CustomerOrderItemStatusId = x.CustomerOrderItemStatusId,
-                        MaterialQualityName = x.MaterialQuality.Name,
                         TreatmentTypeName = x.TreatmentType.Name,
                         TreatmentTypeId = x.TreatmentTypeId,
                         CreateDate = x.CreateDate,
@@ -237,7 +236,6 @@ namespace OrderControlSystem.BLL.Managers
             customerOrders.CustomerOrderItems = orderControlContext.CustomerOrderItems
                     .Select(x => new CustomerOrderItem
                     {
-                        MaterialQuality = x.MaterialQuality,
                         TreatmentType = x.TreatmentType,
                         CustomerOrderItemStatus = x.CustomerOrderItemStatus,
                         Customer = x.Customer,

@@ -9,8 +9,6 @@ namespace OrderControlSystem.DAL.Models
         public int? CustomerOrderItemStatusId { get; set; }
         public int? CustomerId { get; set; }
         public int? TreatmentTypeId { get; set; }
-        public int? MaterialQualityId { get; set; }
-        public string? MaterialQualityUnknown { get; set; }
         public string? Name { get; set; }
         public string? DrawingNo { get; set; }
         public int? PieceNumber { get; set; }
@@ -33,7 +31,6 @@ namespace OrderControlSystem.DAL.Models
         public int? NextHb { get; set; }
         public string? CustomerName { get; set; }
         public string? CustomerOrderItemStatusName { get; set; }
-        public string? MaterialQualityName { get; set; }
         public string? TreatmentTypeName { get; set; }
         public string? CustomerOrderName { get; set; }
     }

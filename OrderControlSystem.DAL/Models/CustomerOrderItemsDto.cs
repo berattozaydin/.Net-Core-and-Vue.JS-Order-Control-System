@@ -10,8 +10,6 @@ namespace OrderControlSystem.DAL.Models
         public int CustomerOrderItemStatusId { get; set; }
         public int CustomerId { get; set; }
         public int TreatmentTypeId { get; set; }
-        public int? MaterialQualityId { get; set; }
-        public string MaterialQualityUnknown { get; set; }
         public string Name { get; set; }
         public string DrawingNo { get; set; }
         public int PieceNumber { get; set; }
@@ -27,8 +25,6 @@ namespace OrderControlSystem.DAL.Models
         public DateTime RegistrationDate { get; set; }
         public DateTime CreateDate { get; set; }
         [NotMapped]
-        public virtual string? MaterialQualityName { get; set; }
-        [NotMapped]
         public virtual string? TreatmentTypeName { get; set; }
         [NotMapped]
         public virtual string? CustomerOrderItemStatusName { get; set; }
@@ -37,7 +33,6 @@ namespace OrderControlSystem.DAL.Models
         public virtual Customer Customer { get; set; }
         public virtual CustomerOrder CustomerOrder { get; set; }
         public virtual CustomerOrderItemStatus CustomerOrderItemStatus { get; set; }
-        public virtual MaterialQuality MaterialQuality { get; set; }
         public virtual TreatmentType TreatmentType { get; set; }
     }
 }

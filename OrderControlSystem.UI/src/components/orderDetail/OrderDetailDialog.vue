@@ -120,7 +120,6 @@ const orderDetailModel=ref({});
             !orderDetailModel.value.drawingNo||
             !orderDetailModel.value.customerId||
             !orderDetailModel.value.treatmentTypeId||
-            !orderDetailModel.value.materialQualityId||
             !orderDetailModel.value.pieceNumber||
             !orderDetailModel.value.pieceWeight||
             !orderDetailModel.value.width||

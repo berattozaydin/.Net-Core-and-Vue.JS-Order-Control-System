@@ -159,8 +159,7 @@ namespace OrderControlSystem.BLL.Managers
             var jsonList = JsonConvert.DeserializeObject<Level4Response<List<CustomerOrderItemService>>>(body);
             foreach(var co in jsonList.value)
             {
-                if(co.MaterialQualityId != null)
-                {
+                
                     coi = new CustomerOrderItem
                     {
                         CustomerId = co.CustomerId,
@@ -192,11 +191,7 @@ namespace OrderControlSystem.BLL.Managers
                         customerOrderItemManager.Add(coi);
                     }
                     
-                }
-                else
-                {
-                        response=false;
-                }
+               
             }
             return response;
         }

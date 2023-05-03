@@ -9,13 +9,13 @@ namespace OrderControlSystem.DAL
         public TreatmentType()
         {
             CustomerOrderItems = new HashSet<CustomerOrderItem>();
-            Receipts = new HashSet<Receipt>();
+            Receipts = new HashSet<ProcessSteps>();
         }
 
         public int TreatmentTypeId { get; set; }
         public string Name { get; set; }
 
         public virtual ICollection<CustomerOrderItem> CustomerOrderItems { get; set; }
-        public virtual ICollection<Receipt> Receipts { get; set; }
+        public virtual ICollection<ProcessSteps> Receipts { get; set; }
     }
 }

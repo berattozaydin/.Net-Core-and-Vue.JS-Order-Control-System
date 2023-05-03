@@ -8,12 +8,12 @@ namespace OrderControlSystem.DAL
     {
         public Furnance()
         {
-            Receipts = new HashSet<Receipt>();
+            Receipts = new HashSet<ProcessSteps>();
         }
 
         public int FurnanceId { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Receipt> Receipts { get; set; }
+        public virtual ICollection<ProcessSteps> Receipts { get; set; }
     }
 }

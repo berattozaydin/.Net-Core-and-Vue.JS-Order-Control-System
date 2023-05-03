@@ -25,8 +25,7 @@ namespace OrderControlSystem.DAL
         public virtual DbSet<CustomerOrderStatus> CustomerOrderStatuses { get; set; }
         public virtual DbSet<Furnance> Furnances { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
-        public virtual DbSet<MaterialQuality> MaterialQualities { get; set; }
-        public virtual DbSet<Receipt> Receipts { get; set; }
+        public virtual DbSet<ProcessSteps> ProcessStepss { get; set; }
         public virtual DbSet<ReceiptDetail> ReceiptDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<TreatmentType> TreatmentTypes { get; set; }
@@ -176,8 +175,6 @@ namespace OrderControlSystem.DAL
 
                 entity.HasIndex(e => e.CustomerOrderId, "CustomerOrderItem_ibfk_5");
 
-                //entity.HasIndex(e => e.MaterialQualityId, "MaterialQualityId");
-
                 entity.HasIndex(e => e.TreatmentTypeId, "TreatmentTypeId");
 
                 entity.Property(e => e.CustomerOrderItemId)
@@ -191,15 +188,10 @@ namespace OrderControlSystem.DAL
                     .HasMaxLength(36)
                     .IsFixedLength(true);
 
-               /* entity.Property(e => e.DrawingNo)
-                    .IsRequired()
-                    .HasMaxLength(30);*/
 
                 entity.Property(e => e.FilePath).HasMaxLength(250);
 
                 entity.Property(e => e.FinishDate).HasColumnType("date");
-
-                //entity.Property(e => e.MaterialQualityUnknown).HasMaxLength(35);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -230,11 +222,6 @@ namespace OrderControlSystem.DAL
                     .HasForeignKey(d => d.CustomerOrderItemStatusId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("CustomerOrderItemStatus");
-
-                /*entity.HasOne(d => d.MaterialQuality)
-                    .WithMany(p => p.CustomerOrderItems)
-                    .HasForeignKey(d => d.MaterialQualityId)
-                    .HasConstraintName("CustomerOrderItem_ibfk_4");*/
 
                 entity.HasOne(d => d.TreatmentType)
                     .WithMany(p => p.CustomerOrderItems)
@@ -295,28 +282,11 @@ namespace OrderControlSystem.DAL
 
             });
 
-            modelBuilder.Entity<MaterialQuality>(entity =>
+
+            modelBuilder.Entity<ProcessSteps>(entity =>
             {
-                entity.ToTable("MaterialQuality");
+                entity.ToTable("ProcessSteps");
 
-                entity.Property(e => e.Code)
-                    .IsRequired()
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Remark)
-                    .IsRequired()
-                    .HasMaxLength(500);
-            });
-
-            modelBuilder.Entity<Receipt>(entity =>
-            {
-                entity.ToTable("Receipt");
-
-                entity.HasIndex(e => e.FurnanceId, "FurnanceId");
 
                 entity.HasIndex(e => e.TreatmentTypeId, "TreatmentTypeId");
 
@@ -327,18 +297,6 @@ namespace OrderControlSystem.DAL
                 entity.Property(e => e.Remark)
                     .IsRequired()
                     .HasMaxLength(30);
-
-                entity.HasOne(d => d.Furnance)
-                    .WithMany(p => p.Receipts)
-                    .HasForeignKey(d => d.FurnanceId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Receipt_ibfk_2");
-
-                entity.HasOne(d => d.TreatmentType)
-                    .WithMany(p => p.Receipts)
-                    .HasForeignKey(d => d.TreatmentTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Receipt_ibfk_1");
             });
 
             modelBuilder.Entity<ReceiptDetail>(entity =>
@@ -348,7 +306,7 @@ namespace OrderControlSystem.DAL
                 entity.HasIndex(e => e.ReceiptId, "ReceiptDetail_ibfk_1");
 
                 entity.HasOne(d => d.Receipt)
-                    .WithMany(p => p.ReceiptDetails)
+                    .WithMany(p => p.ProcessStepsDetails)
                     .HasForeignKey(d => d.ReceiptId)
                     .HasConstraintName("ReceiptDetail_ibfk_1");
             });

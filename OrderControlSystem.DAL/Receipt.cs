@@ -4,21 +4,19 @@
 
 namespace OrderControlSystem.DAL
 {
-    public partial class Receipt
+    public partial class ProcessSteps
     {
-        public Receipt()
+        public ProcessSteps()
         {
-            ReceiptDetails = new HashSet<ReceiptDetail>();
+            ProcessStepsDetails = new HashSet<ReceiptDetail>();
         }
 
-        public int ReceiptId { get; set; }
+        public int ProcessStepsId { get; set; }
         public int TreatmentTypeId { get; set; }
-        public int FurnanceId { get; set; }
         public string Name { get; set; }
         public string Remark { get; set; }
 
-        public virtual Furnance Furnance { get; set; }
         public virtual TreatmentType TreatmentType { get; set; }
-        public virtual ICollection<ReceiptDetail> ReceiptDetails { get; set; }
+        public virtual ICollection<ReceiptDetail> ProcessStepsDetails { get; set; }
     }
 }

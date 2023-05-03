@@ -52,7 +52,6 @@ async function fetchDetail(){
   customerOrderItemStatus.value = await customerOrderDetailApi.getCustomerOrderItemStatus();
   customer.value = await customerApi.fetchCustomer();
   treatmentType.value = await treatmentTypeApi.GetTreatmentTypeList();
-  materialQuality.value = await materialQualityApi.getMaterialQualities();
 }
 async function fetchOrderDetails() {
   if(props.dialogType == DIALOG_TYPE.ADD){
@@ -167,12 +166,6 @@ function rowClass(e){
       <Column field="hb" header="Önceki Sertlik(HB)" sortable> </Column>
       <Column field="nextHb" header="Sonraki Sertlik(Hb)" sortable> </Column>
       <Column field="nextHrc" header="Sonraki Sertlik(Hrc)" sortable> </Column>
-      <Column field="materialQualityId" header="Malzeme Kalitesi" sortable>
-        <template #body="slotProps">
-          {{ props.dialogType == DIALOG_TYPE.UPD ? slotProps.data?.materialQualityName:materialQuality?.filter(x=>x.materialQualityId ==slotProps.data?.materialQualityId )[0]?.name }}
-        </template>
-       </Column>
-      
       <Column field="treatmentTypeId" header="İşlem Tipi" sortable>
         <template #body="slotProps">
             {{ props.dialogType == DIALOG_TYPE.UPD ? slotProps.data?.treatmentTypeName:treatmentType?.filter(x=>x.treatmentTypeId == slotProps.data?.treatmentTypeId)[0]?.name }}

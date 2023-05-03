@@ -59,8 +59,8 @@ builder.Services.AddScoped<CustomerOrderManager>();
 builder.Services.AddScoped<TreatmentTypeRepository>();
 builder.Services.AddScoped<TreatmentTypeManager>();
 
-builder.Services.AddScoped<ReceiptRepository>();
-builder.Services.AddScoped<ReceiptManager>();
+builder.Services.AddScoped<ProcessStepsRepository>();
+builder.Services.AddScoped<ProcessStepsManager>();
 
 builder.Services.AddScoped<ReceiptDetailRepository>();
 builder.Services.AddScoped<ReceiptDetailManager>();
@@ -72,10 +72,6 @@ builder.Services.AddScoped<CustomerOrderItemStatusRepository>();
 builder.Services.AddScoped<CustomerOrderItemStatusManager>();
 
 builder.Services.AddScoped<CustomerRepository>();
-
-
-builder.Services.AddScoped<MaterialQualityRepository>();
-builder.Services.AddScoped<MaterialQualityManager>();
 
 builder.Services.AddScoped<AccountRepository>();
 builder.Services.AddScoped<AccountManager>();

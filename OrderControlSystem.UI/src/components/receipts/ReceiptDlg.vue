@@ -24,11 +24,6 @@
             <small class="p-error" v-if="submited&&!receiptModel.treatmentTypeId">Lütfen Değer Giriniz</small> 
           </div>
           <div class="field col-12 md:col-3">
-            <label for="furnanceId">Fırın Tipi</label>
-            <Furnance v-model="receiptModel.furnanceId"></Furnance>
-            <small class="p-error" v-if="submited&&!receiptModel.furnanceId">Lütfen Değer Giriniz</small> 
-          </div>
-          <div class="field col-12 md:col-3">
             <label for="remark">Açıklama</label>
             <AppTextarea v-model="receiptModel.remark"></AppTextarea>
             <small class="p-error" v-if="submited&&!receiptModel.remark">Lütfen Değer Giriniz</small> 
@@ -131,7 +126,6 @@ function editReceiptDetails(slotprops) {
 async function addReceiptTable() {
   if(!receiptModel.value.name||
     !receiptModel.value.remark||
-    !receiptModel.value.furnanceId||
     !receiptModel.value.treatmentTypeId){
       submited.value=true;
       return;
