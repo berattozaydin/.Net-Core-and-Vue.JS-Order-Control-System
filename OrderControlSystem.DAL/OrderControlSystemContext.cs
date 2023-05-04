@@ -29,6 +29,7 @@ namespace OrderControlSystem.DAL
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<TreatmentType> TreatmentTypes { get; set; }
         public virtual DbSet<CustomerOrderNumber> CustomerOrderNumberDto { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -130,6 +131,7 @@ namespace OrderControlSystem.DAL
                 entity.HasIndex(e => e.CustomerId, "CustomerId");
 
                 entity.HasIndex(e => e.CustomerOrderStatusId, "CustomerOrderStatusId");
+                entity.HasIndex(e => e.TotalAmount, "TotalAmount");
 
                 entity.HasIndex(e => e.OrderNumber, "UK_OrderNumber")
                     .IsUnique();
@@ -175,6 +177,7 @@ namespace OrderControlSystem.DAL
                 entity.HasIndex(e => e.CustomerOrderId, "CustomerOrderItem_ibfk_5");
 
                 entity.HasIndex(e => e.TreatmentTypeId, "TreatmentTypeId");
+                entity.HasIndex(e => e.Amount, "Amount");
 
                 entity.Property(e => e.CustomerOrderItemId)
                     .HasMaxLength(36)
@@ -262,7 +265,19 @@ namespace OrderControlSystem.DAL
 
                 entity.Property(e => e.MachineName).HasMaxLength(100);
             });
-           
+            modelBuilder.Entity<Company>(entity =>
+            {
+                entity.ToTable("Company");
+
+                entity.Property(e => e.CompanyId).HasColumnName("CompanyId");
+
+                entity.Property(e => e.CompanyName).HasMaxLength(50);
+
+                entity.Property(e => e.CompanyAmount);
+
+                
+            });
+
             modelBuilder.Entity<CustomerOrderNumber>(entity =>
             {
                 entity.ToTable("CustomerOrderNumber");

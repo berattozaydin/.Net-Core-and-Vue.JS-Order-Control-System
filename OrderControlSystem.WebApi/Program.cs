@@ -82,7 +82,6 @@ builder.Services.AddScoped<AuthManager>();
 builder.Services.AddScoped<CustomerManager>();
 
 
-
 var key = Encoding.ASCII.GetBytes("qweqewqeqwe123123123qwefdsagag");
 builder.Services.AddAuthentication(x =>
 {
@@ -122,13 +121,12 @@ if (app.Environment.IsDevelopment())
 app.UseCors(builder =>
 {
     builder
-    .AllowAnyOrigin()
+    .WithOrigins("http://localhost:3000","https://localhost:3000")
     .AllowAnyMethod()
     .AllowAnyHeader();
 
 });
 /*--------------------------------Middlewares-----------------------------------------*/
-
 
 var wsOptions = new WebSocketOptions { KeepAliveInterval = TimeSpan.FromSeconds(60), ReceiveBufferSize = 4 * 1024 };
 app.UseWebSockets(wsOptions);
@@ -142,6 +140,7 @@ app.MapControllers();
 
 
 var delaySetting = int.Parse(builder.Configuration["Settings:WebSocketDelay"]);
+
 app.Use(async (context, next) =>
 {
     if (context.WebSockets.IsWebSocketRequest)
@@ -152,7 +151,7 @@ app.Use(async (context, next) =>
             while (true)
             {
                 if (context.Request.Path.Value.EndsWith(@"/customerOrders"))
-                     await OrderControlSystem.BLL.HandleMiddleware.WebSocketManager.SendAsync(context, webSocket, context.Request.Path);
+                     await WebsocketManager.SendAsync(context, webSocket, context.Request.Path);
 
                 await Task.Delay(delaySetting);
             }

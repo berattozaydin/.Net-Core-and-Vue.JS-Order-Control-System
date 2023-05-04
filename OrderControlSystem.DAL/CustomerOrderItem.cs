@@ -27,6 +27,7 @@ namespace OrderControlSystem.DAL
         public DateTime? ShippingDate { get; set; }
         public string Remark { get; set; }
         public string FilePath { get; set; }
+        public float Amount { get; set; }
         [NotMapped]
         public virtual string TreatmentTypeName { get; set; }
         [NotMapped]

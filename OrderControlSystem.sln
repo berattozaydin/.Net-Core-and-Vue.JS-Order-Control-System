@@ -10,13 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderControlSystem.WebApi", "OrderControlSystem.WebApi\OrderControlSystemWebApi.csproj", "{91215D37-4F7E-40C2-8E0F-CF8A9BD851B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderControlSystemWebApi", "OrderControlSystem.WebApi\OrderControlSystemWebApi.csproj", "{91215D37-4F7E-40C2-8E0F-CF8A9BD851B6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderControlSystem.BLL", "OrderControlSystem.BLL\OrderControlSystem.BLL.csproj", "{AC08CE3F-0584-4D6C-B334-B006C93F0C8E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderControlSystem.Core", "OrderControlSystem.Core\OrderControlSystem.Core.csproj", "{13AF2155-04A7-4834-B483-8AE4C1A6D68E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderControlSystem.DAL", "OrderControlSystem.DAL\OrderControlSystem.DAL.csproj", "{6D38A302-61A8-42EB-ADB1-40F16C156843}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderControlSystemService", "OrderControlSystemService\OrderControlSystemService.csproj", "{B5D01525-099A-4696-8675-3B999929C9DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +46,10 @@ Global
 		{6D38A302-61A8-42EB-ADB1-40F16C156843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D38A302-61A8-42EB-ADB1-40F16C156843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D38A302-61A8-42EB-ADB1-40F16C156843}.Release|Any CPU.Build.0 = Release|Any CPU
-		{033460BF-A910-41BB-9BAA-28CD5860B2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{033460BF-A910-41BB-9BAA-28CD5860B2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{033460BF-A910-41BB-9BAA-28CD5860B2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{033460BF-A910-41BB-9BAA-28CD5860B2C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5D01525-099A-4696-8675-3B999929C9DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D01525-099A-4696-8675-3B999929C9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D01525-099A-4696-8675-3B999929C9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D01525-099A-4696-8675-3B999929C9DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

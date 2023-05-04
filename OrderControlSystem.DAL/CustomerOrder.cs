@@ -20,6 +20,7 @@ namespace OrderControlSystem.DAL
         public string OrderNumber { get; set; }
         public string Name { get; set; }
         public string Remark { get; set; }
+        public float TotalAmount { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
         [NotMapped]

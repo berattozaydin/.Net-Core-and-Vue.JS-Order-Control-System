@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace OrderControlSystem.BLL.HandleMiddleware
 {
-    public class WebSocketManager
+    public class WebsocketManager
     {
 
-        public WebSocketManager(HttpContext httpContext, WebSocket webSocket)
+        public WebsocketManager()
         {
 
 

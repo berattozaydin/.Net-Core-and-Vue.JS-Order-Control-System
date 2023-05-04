@@ -5,7 +5,7 @@
         Taslak = 10,
         SiparisOlusturuldu = 11,
         Onaylanmis = 20,
-        IsılIslemde = 21,
+        PaketlemeAsamasinda = 21,
         IptalEdildi = 30,
         Tamamlandi = 40,
         Sevkediliyor = 50,
@@ -16,7 +16,7 @@
     {
         Taslak = 10,
         Onaylanmis = 20,
-        IsılIslemde = 21,
+        PaketlemeAsamasinda = 21,
         IptalEdildi = 30,
         Tamamlandi = 40,
         Sevkediliyor = 50,
