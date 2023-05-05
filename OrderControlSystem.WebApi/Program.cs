@@ -28,7 +28,6 @@ builder.Services.AddLocalization();
 /*------------------------------DB CONNECTION---------------------------------------*/
 
 var level3DbConnection = builder.Configuration["ConnectionString:Level3Db"];
-var level2DbConnection = builder.Configuration["ConnectionString:Level2Db"];
 
 builder.Services.AddDbContext<OrderControlContext>(o =>
 {

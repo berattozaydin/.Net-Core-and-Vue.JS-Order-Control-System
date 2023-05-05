@@ -38,13 +38,13 @@ namespace OrderControlSystemService.Src
                 customerOrderAmounts += customerOrderItemList[i].Amount;
 
             }
-            var companyAmount = orderControlContext.Company.FirstOrDefault().CompanyAmount;
-            var totalCompanyAmount = companyAmount - customerOrderAmounts;
+            var updateCompany = orderControlContext.Company.FirstOrDefault(x => x.CompanyId == 1);
+            var totalCompanyAmount = updateCompany.CompanyAmount - customerOrderAmounts;
             //var totalCompanyAmount = 400.0f;
             if (totalCompanyAmount > 0)
             {
             
-                var updateCompany = orderControlContext.Company.FirstOrDefault(x => x.CompanyId == 1);
+                
                 updateCompany.CompanyAmount = totalCompanyAmount;
                 orderControlContext.Company.Update(updateCompany);
                 orderControlContext.SaveChanges();
