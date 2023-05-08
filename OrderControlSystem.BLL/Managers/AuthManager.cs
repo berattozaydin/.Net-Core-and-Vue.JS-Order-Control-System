@@ -6,10 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using MySqlX.XDevAPI.Common;
-using OrderControlSystem.Core.Models;
 using OrderControlSystem.DAL;
-using Ubiety.Dns.Core;
 using Result = OrderControlSystem.Core.Models.Result;
 
 namespace OrderControlSystem.BLL.Managers
