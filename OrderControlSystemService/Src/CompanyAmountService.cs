@@ -15,7 +15,7 @@ namespace OrderControlSystemService.Src
     {
         
         CancellationToken cancellationToken;
-       // SerialPort serialPort = new SerialPort {BaudRate=9600,PortName="COM1" };
+        SerialPort serialPort = new SerialPort {BaudRate=9600,PortName="COM1" };
         public CompanyAmountService(CancellationToken cancellationToken)
         {
             this.cancellationToken = cancellationToken;
@@ -65,32 +65,39 @@ namespace OrderControlSystemService.Src
             var customerOrderItemList = await orderControlContext.CustomerOrderItems.Where(x => x.CustomerOrderItemStatusId == (int)CustomerOrderItemStatusId.PaketlemeAsamasinda).ToArrayAsync();
             int itemListCounter = 0;
             float customerOrderAmounts = 0.0f;
-            /*for (int i = 0; i < customerOrderItemList.Length; i++)
+            for (int i = 0; i < customerOrderItemList.Length; i++)
             {
                 customerOrderAmounts += customerOrderItemList[i].Amount;
 
-            }*/
+            }
             
            var updateCompany = orderControlContext.Company.FirstOrDefault(x => x.CompanyId == 1);
-            updateCompany.CompanyAmount += 5.0f;
+            //updateCompany.CompanyAmount += 5.0f;
             
              var totalCompanyAmount = updateCompany.CompanyAmount;
             if (totalCompanyAmount > 0)
             {
-            
-                
                 updateCompany.CompanyAmount = totalCompanyAmount;
                 orderControlContext.Company.Update(updateCompany);
                 orderControlContext.SaveChanges();
             }
-            //CheckAsync();
+            CheckBarcodeAsync();
         }
-        public void CheckAsync()
+        public async Task CheckBarcodeAsync()
         {
+            string data = "";
             OrderControlContext orderControlContext = new OrderControlContext();
-            FormattableString sql = $"select username from account where Id=1";
-            var checkOrder = orderControlContext.Database.SqlQuery<string>(sql);
-            var check = checkOrder;
+            while (!serialPort.IsOpen)
+            {
+               data= serialPort.ReadLine();
+                WriteConsole(data);
+                await Task.Delay(4000);
+            }
+
+        }
+        private void WriteConsole(string data)
+        {
+            Console.WriteLine("Data Geldi : " + data + " " + DateTime.Now + "  " + " Geliş Zamanı");
         }
         public Task StopAsync(CancellationToken cancellationToken)
         {
