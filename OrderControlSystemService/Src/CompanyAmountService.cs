@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using MySqlX.XDevAPI.Common;
 using OrderControlSystem.Core.Types;
 using OrderControlSystem.DAL;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -72,7 +74,6 @@ namespace OrderControlSystemService.Src
             }
             
            var updateCompany = orderControlContext.Company.FirstOrDefault(x => x.CompanyId == 1);
-            //updateCompany.CompanyAmount += 5.0f;
             
              var totalCompanyAmount = updateCompany.CompanyAmount;
             if (totalCompanyAmount > 0)
@@ -81,7 +82,7 @@ namespace OrderControlSystemService.Src
                 orderControlContext.Company.Update(updateCompany);
                 orderControlContext.SaveChanges();
             }
-            await CheckBarcodeAsync();
+            //await CheckBarcodeAsync();
         }
         public async Task CheckBarcodeAsync()
         {
@@ -95,10 +96,61 @@ namespace OrderControlSystemService.Src
                 }
                 data = serialPort.ReadLine();
                 WriteConsole(data);
-                
+                if (string.IsNullOrEmpty(data))
+                {
+                    continue;
+                }
+                var res = await CheckBarcodeData(data);
+                if(res == false)
+                {
+                    var args = new Log
+                    {
+                        CreatedDate = DateTime.Now,
+                        LogStatusCode = 404,
+                        LogDescription = "Program Hata. Barkod Onaylanmadı Servis Durdu.",
+                        LogMethod = "Service/CheckBarcodeData",
+                        MachineName = Environment.MachineName,
+                        LogPath = "CompanyAmountService"
+                    };
+                    orderControlContext.Logs.Add(args);
+                    orderControlContext.SaveChanges();
+                    break;
+                }
                 await Task.Delay(4000);
             }
 
+        }
+        private async Task<bool> CheckBarcodeData(string data)
+        {
+            var result = false;
+            OrderControlContext orderControlContext = new OrderControlContext();
+            try
+            {
+                var res = orderControlContext.CustomerOrders.Any(x => x.BarcodeNumber == data);
+                if (res == false) 
+                {
+                    //Add New CustomerOrder Block;
+                }
+                else
+                {
+                    //Update Exist CustomerOrder Block;
+                }
+
+            }catch(Exception ex)
+            {
+                var args = new Log
+                {
+                    CreatedDate = DateTime.Now,
+                    LogStatusCode = 404,
+                    LogDescription = ("Program Hata. "+ex.Message),
+                    LogMethod = "Service/CheckBarcodeData",
+                    MachineName = Environment.MachineName,
+                    LogPath = "CompanyAmountService"
+                };
+                orderControlContext.Logs.Add(args);
+                orderControlContext.SaveChanges();
+            }
+            return result;
         }
         private void WriteConsole(string data)
         {
