@@ -34,7 +34,8 @@ namespace OrderControlSystemService.Src
                 
                 try
                 {
-                    ShoppingCart_CallBack();
+                    //ShoppingCart_CallBack();
+                    BarcodeSystem_CallBack();
                     /*if (serialPort.IsOpen)
                     {
                         WriteSerialPort();
@@ -52,7 +53,7 @@ namespace OrderControlSystemService.Src
                 await Task.Delay(2000);
             }
         }
-        /*public void WriteSerialPort()
+        public void WriteSerialPort()
         {
             try
             {
@@ -64,7 +65,33 @@ namespace OrderControlSystemService.Src
                 Console.WriteLine(ex);
             }
 
-        }*/
+        }
+        public async void BarcodeSystem_CallBack()
+        {
+            var barcodeSystem = new List<CustomerOrder>();
+            var barcodeSystemDataStorage = new Dictionary<string, string>();
+            string[] colorArray = new string[] { "YELLOW","RED", "GREEN" };
+
+            for (int i = 0;i<barcodeSystem.Count;i++)
+            {
+                if (!(barcodeSystem.Count > 0))
+                    break;
+                barcodeSystemDataStorage.Add(colorArray[0],barcodeSystem[i].BarcodeNumber); 
+
+            }
+            for(int i = 0;i< barcodeSystemDataStorage.Count; i++)
+            {
+                if (!(barcodeSystemDataStorage.Count > 0))
+                    break;
+               var res =  barcodeSystemDataStorage[colorArray[0]];
+                var orderControlContext = new OrderControlContext();
+                var updateCustomerOrder = orderControlContext.CustomerOrders.FirstOrDefault(x => x.BarcodeNumber == res);
+                updateCustomerOrder.ColorName = res;
+                orderControlContext.CustomerOrders.Update(updateCustomerOrder);
+                orderControlContext.SaveChanges();
+            }
+
+        }
         public async void ShoppingCart_CallBack()
         {
             OrderControlContext orderControlContext = new OrderControlContext();

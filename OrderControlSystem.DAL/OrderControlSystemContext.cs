@@ -153,7 +153,9 @@ namespace OrderControlSystem.DAL
                 entity.Property(e => e.BarcodeNumber)
                    .IsRequired()
                    .HasMaxLength(25);
-
+                entity.Property(e => e.ColorName)
+                  .IsRequired()
+                  .HasMaxLength(10);
                 entity.Property(e => e.Remark)
                     .IsRequired()
                     .HasMaxLength(50);

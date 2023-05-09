@@ -19,6 +19,7 @@ namespace OrderControlSystem.DAL
         public int CustomerOrderStatusId { get; set; }
         public string OrderNumber { get; set; }
         public string BarcodeNumber { get; set; }
+        public string ColorName { get; set; }
         public string Name { get; set; }
         public string Remark { get; set; }
         public float TotalAmount { get; set; }
