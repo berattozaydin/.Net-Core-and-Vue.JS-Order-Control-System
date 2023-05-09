@@ -1,12 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.WebSockets;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using MySqlX.XDevAPI.Common;
+using OrderControlSystem.BLL.HandleMiddleware;
 using OrderControlSystem.Core.Types;
 using OrderControlSystem.DAL;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
@@ -124,12 +128,15 @@ namespace OrderControlSystemService.Src
         {
             var result = false;
             OrderControlContext orderControlContext = new OrderControlContext();
+           
             try
             {
                 var res = orderControlContext.CustomerOrders.Any(x => x.BarcodeNumber == data);
+
                 if (res == false) 
                 {
                     //Add New CustomerOrder Block;
+                    
                 }
                 else
                 {

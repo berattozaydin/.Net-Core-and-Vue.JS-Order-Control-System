@@ -79,7 +79,7 @@ builder.Services.AddSingleton<LogManager>();
 builder.Services.AddScoped<CustomerOrderStatusManager>();
 builder.Services.AddScoped<AuthManager>();
 builder.Services.AddScoped<CustomerManager>();
-
+builder.Services.AddHttpContextAccessor();
 
 var key = Encoding.ASCII.GetBytes("qweqewqeqwe123123123qwefdsagag");
 builder.Services.AddAuthentication(x =>
@@ -108,7 +108,11 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-
+HttpContext GetContext()
+{
+    var context = new DefaultHttpContext();
+    return context;
+}
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -150,7 +154,7 @@ app.Use(async (context, next) =>
             while (true)
             {
                 if (context.Request.Path.Value.EndsWith(@"/customerOrders"))
-                     await WebsocketManager.SendAsync(context, webSocket, context.Request.Path);
+                     await WebsocketManager.SendAsync(webSocket, context.Request.Path);
 
                 await Task.Delay(delaySetting);
             }

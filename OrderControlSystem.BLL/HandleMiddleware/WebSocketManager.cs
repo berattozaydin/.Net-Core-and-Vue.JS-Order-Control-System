@@ -18,7 +18,7 @@ namespace OrderControlSystem.BLL.HandleMiddleware
 
         }
 
-        public async static Task SendAsync(HttpContext httpContext, WebSocket webSocket, string ms = null)
+        public async static Task SendAsync(WebSocket webSocket, string ms = null)
         {
             var buffer = new byte[1024 * 4];
             /*var list = tpHetrL2Context.Furnace1Data.OrderByDescending(x => x.Furnace1DataId).Select(x => new

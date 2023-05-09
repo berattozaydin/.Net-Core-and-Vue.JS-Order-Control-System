@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OrderControlSystem.BLL\OrderControlSystem.BLL.csproj" />
     <ProjectReference Include="..\OrderControlSystem.DAL\OrderControlSystem.DAL.csproj" />
   </ItemGroup>
 </Project>
