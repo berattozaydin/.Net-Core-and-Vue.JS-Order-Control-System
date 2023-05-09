@@ -25,7 +25,6 @@ namespace OrderControlSystem.DAL
         public virtual DbSet<CustomerOrderStatus> CustomerOrderStatuses { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<ProcessSteps> ProcessStepss { get; set; }
-        public virtual DbSet<ReceiptDetail> ReceiptDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<TreatmentType> TreatmentTypes { get; set; }
         public virtual DbSet<CustomerOrderNumber> CustomerOrderNumberDto { get; set; }
@@ -307,18 +306,6 @@ namespace OrderControlSystem.DAL
                 entity.Property(e => e.Remark)
                     .IsRequired()
                     .HasMaxLength(30);
-            });
-
-            modelBuilder.Entity<ReceiptDetail>(entity =>
-            {
-                entity.ToTable("ReceiptDetail");
-
-                entity.HasIndex(e => e.ReceiptId, "ReceiptDetail_ibfk_1");
-
-                entity.HasOne(d => d.Receipt)
-                    .WithMany(p => p.ProcessStepsDetails)
-                    .HasForeignKey(d => d.ReceiptId)
-                    .HasConstraintName("ReceiptDetail_ibfk_1");
             });
 
             modelBuilder.Entity<Role>(entity =>

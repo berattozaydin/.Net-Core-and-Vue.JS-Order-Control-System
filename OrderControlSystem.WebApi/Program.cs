@@ -61,9 +61,6 @@ builder.Services.AddScoped<TreatmentTypeManager>();
 builder.Services.AddScoped<ProcessStepsRepository>();
 builder.Services.AddScoped<ProcessStepsManager>();
 
-builder.Services.AddScoped<ReceiptDetailRepository>();
-builder.Services.AddScoped<ReceiptDetailManager>();
-
 builder.Services.AddScoped<CustomerOrderItemRepository>();
 builder.Services.AddScoped<CustomerOrderItemManager>();
 

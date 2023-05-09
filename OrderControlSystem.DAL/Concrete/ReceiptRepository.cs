@@ -15,15 +15,6 @@ namespace OrderControlSystem.DAL.Concrete
         {
             _context = context;
         }
-        public override List<ProcessSteps> List()
-        {
-            return _object.Include(re => re.ProcessStepsDetails).ToList();
-        }
-        public override List<ProcessSteps> List(Expression<Func<ProcessSteps, bool>> filter)
-        {
-            //Select(co=>new CustomerOrder() { CustomerOrderStatus = co.CustomerOrderStatus,Name=co.Name,Remark=co.Remark,CustomerOrderId=co.CustomerOrderId})
-            return _object.Include(re => re.ProcessStepsDetails).Where(filter).ToList();
-        }
         public IQueryable<ReceiptWithDetail> ListWithDetail()
         {
             return _object.Select(x => new ReceiptWithDetail

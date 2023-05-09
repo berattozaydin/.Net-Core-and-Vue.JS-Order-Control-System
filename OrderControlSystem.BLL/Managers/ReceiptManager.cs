@@ -129,7 +129,6 @@ namespace OrderControlSystem.BLL.Managers
             receiptUpdate.TreatmentTypeId = item.TreatmentTypeId;
             receiptUpdate.Remark = item.Remark;
             receiptUpdate.Name = item.Name;
-            receiptUpdate.ProcessStepsDetails = item.ProcessStepsDetails;
             orderControlContext.ProcessStepss.Update(receiptUpdate);
             if (orderControlContext.SaveChanges() > 0)
             {

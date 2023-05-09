@@ -6,10 +6,6 @@ namespace OrderControlSystem.DAL
 {
     public partial class ProcessSteps
     {
-        public ProcessSteps()
-        {
-            ProcessStepsDetails = new HashSet<ReceiptDetail>();
-        }
 
         public int ProcessStepsId { get; set; }
         public int TreatmentTypeId { get; set; }
@@ -17,6 +13,5 @@ namespace OrderControlSystem.DAL
         public string Remark { get; set; }
 
         public virtual TreatmentType TreatmentType { get; set; }
-        public virtual ICollection<ReceiptDetail> ProcessStepsDetails { get; set; }
     }
 }

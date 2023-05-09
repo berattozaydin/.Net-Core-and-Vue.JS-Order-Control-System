@@ -89,6 +89,7 @@ namespace OrderControlSystemService.Src
                 updateCustomerOrder.ColorName = res;
                 orderControlContext.CustomerOrders.Update(updateCustomerOrder);
                 orderControlContext.SaveChanges();
+                updateCustomerOrder = new CustomerOrder();
             }
 
         }
