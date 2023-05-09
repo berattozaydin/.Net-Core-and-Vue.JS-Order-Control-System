@@ -19,12 +19,7 @@ const customerOrderModel = ref({customerOrderItems:[]});
 const submited = ref(false);
 
 onMounted(async ()=>{
-  if(props.dialogType == DIALOG_TYPE.ADD){
-    setDefaultCustomerOrder();
-  }
-  if(props.dialogType == DIALOG_TYPE.UPD ){
-    customerOrderModel.value=(await customerOrderApi.getCustomerOrder(props.corderId));
-  }
+l
 })
 async function setDefaultCustomerOrder(){
     customerOrderModel.value.orderNumber = await customerOrderApi.getCustomerOrderNumber();

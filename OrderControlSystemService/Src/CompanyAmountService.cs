@@ -81,16 +81,21 @@ namespace OrderControlSystemService.Src
                 orderControlContext.Company.Update(updateCompany);
                 orderControlContext.SaveChanges();
             }
-            CheckBarcodeAsync();
+            await CheckBarcodeAsync();
         }
         public async Task CheckBarcodeAsync()
         {
             string data = "";
             OrderControlContext orderControlContext = new OrderControlContext();
-            while (!serialPort.IsOpen)
+            while (serialPort.IsOpen)
             {
-               data= serialPort.ReadLine();
+                if (!serialPort.IsOpen)
+                {
+                    break;
+                }
+                data = serialPort.ReadLine();
                 WriteConsole(data);
+                
                 await Task.Delay(4000);
             }
 
