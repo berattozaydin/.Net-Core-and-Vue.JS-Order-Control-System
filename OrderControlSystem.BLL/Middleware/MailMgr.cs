@@ -1,4 +1,5 @@
 ﻿using OrderControlSystem.Core.Models;
+using OrderControlSystem.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,24 @@ using System.Threading.Tasks;
 
 namespace OrderControlSystem.BLL.Middleware
 {
-    public static class MailMgr
+    public class MailMgr
     {
-        static MailModelDto mailModelDto = new MailModelDto();
-        static SmptModelDto smptModelDto = new SmptModelDto();
-        static SmptSettingDto smptSettingDto = new SmptSettingDto();
-        public static void MailSetting()
+        MailModelDto mailModelDto = new MailModelDto();
+        SmptModelDto smptModelDto = new SmptModelDto();
+        SmptSettingDto smptSettingDto = new SmptSettingDto();
+        public void MailSetting()
         {
+            OrderControlContext orderControlContext = new();
+            var mailAdressList = orderControlContext.Accounts.Select(x => x.Email).ToList();
             mailModelDto.From = new MailAddress(smptSettingDto.SmptEmailSetting);
-            mailModelDto.To.Add(new MailAddress("berattozaydin@gmail.com"));
+            mailAdressList.ForEach((s) =>
+            {
+                mailModelDto.To.Add(s);
+            });
             mailModelDto.IsBodyHtml = true;
             
         }
-        public static  void SmptSetting()
+        public void SmptSetting()
         {
             
             smptModelDto.Port = smptSettingDto.SmptPortSetting;
@@ -31,7 +37,7 @@ namespace OrderControlSystem.BLL.Middleware
             smptModelDto.Credentials = new NetworkCredential(smptSettingDto.SmptEmailSetting, smptSettingDto.SmptPasswordSetting);
 
         }
-        public static void MailSend()
+        public void MailSend()
         {
             MailSetting();
             SmptSetting();
