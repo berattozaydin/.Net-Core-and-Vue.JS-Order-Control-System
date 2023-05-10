@@ -11,24 +11,23 @@ import AppInfoEmpty from "../app/AppInfoEmpty.vue";
 import AppBaseLayout from "../app/AppBaseLayout.vue";
 import {toastSuccess} from "../../plugins/toastService";
 import { ref, watch, onMounted } from 'vue'
-import ReceiptDlg from './ReceiptDlg.vue'
+import ProcessStepsDlg from './ProcessStepsDlg.vue'
 import { DIALOG_TYPE } from "../../stores/appConst";
 import ConfirmDialog from "primevue/confirmdialog";
 
-import ReceiptApi from "../../api/receipts.api";
-import ReceiptReportDialog from "./ReceiptReportDialog.vue";
+import ProcessStepsApi from "../../api/processSteps.api";
 
-const receiptApi = ReceiptApi();
+const processStepsApi = ProcessStepsApi();
 
 const displayBasic = ref(false);
 const props = defineProps(["modelValue"]);
 const displayReceiptReportDlg = ref(false);
-const receiptDialogType = ref(null);
+const processStepsDlgType = ref(null);
 const processStepsModel = ref([]);
 const selectedProcessSteps = ref([]);
 const filters = ref({
   global: { value: "", matchMode: "contains" },
-  receiptId: {value: "", matchMode: "contains" },
+  processStepsId: {value: "", matchMode: "contains" },
   furnaceName:{value:"",matchMode:"contains"},
   treatmentTypeName:{value:"",matchMode:"contains"},
   name:{value:"",matchMode:"contains"}
@@ -37,53 +36,49 @@ const lazyParams=ref({
                     Page: 0,
                     First: 0,
                     Rows: 20,
-                    SortField: "receiptId",
+                    SortField: "processStepsId",
                     SortOrder: 1,
                     filters: filters.value,
                 });
-const fetchReceipts = async () => {
-  processStepsModel.value=await receiptApi.getAll(lazyParams.value);
+const fetchProcessSteps = async () => {
+  processStepsModel.value=await processStepsApi.getAll(lazyParams.value);
 }
 onMounted(() => {
-   fetchReceipts();
+   fetchProcessSteps();
 })
 
-async function getReportReceipt(item){
-  displayReceiptReportDlg.value=true;
-    processStepsModel.value=item;
-}
-function receiptDlg(cmd,slotprops=null){
+function processStepsDlg(cmd,slotprops=null){
   if(cmd === 'create')
   {
-    receiptDialogType.value=DIALOG_TYPE.ADD;
+    processStepsDlgType.value=DIALOG_TYPE.ADD;
   }
   if(cmd === 'update')
   {
     selectedProcessSteps.value=slotprops
-    receiptDialogType.value=DIALOG_TYPE.UPD;
+    processStepsDlgType.value=DIALOG_TYPE.UPD;
   }
   displayBasic.value=true;
 }
-const deleteReceipt=async (receipt)=>{
-  toastSuccess(receipt.name+" reçetesi silindi.");
-  await receiptApi.deleteReceipt(receipt.receiptId);
-  fetchReceipts();
+const deleteProcessSteps=async (processSteps)=>{
+  toastSuccess(processSteps.name+" işlemi silindi.");
+  await processStepsApi.deleteProcessSteps(processSteps.processStepsId);
+  fetchProcessSteps();
 }
 function onPage(event){
   lazyParams.value = event;
-  fetchReceipts();
+  fetchProcessSteps();
 }
 
 function onSort(event){
   lazyParams.value.SortField=event.sortField;
   lazyParams.value.SortOrder=event.sortOrder;
-  fetchReceipts();
+  fetchProcessSteps();
 
 }
 
 function onFilter(){
   lazyParams.value.filters = filters.value;
-  fetchReceipts();
+  fetchProcessSteps();
   
 }
 watch(filters,()=>{
@@ -98,7 +93,7 @@ watch(filters,()=>{
       </template>
     </Toolbar>
     <DataTable :lazy="true" 
-          :loading="receiptApi.receiptsLoading.value" 
+          :loading="processStepsApi.processStepssLoading.value" 
           class="dataTable" 
           :value="processStepsModel" 
           v-model:filters="filters" 
@@ -115,13 +110,13 @@ watch(filters,()=>{
         <h3>İşlemler</h3>
       </template>
       <template #paginatorend>
-        <Button label="Sipariş İşlemi Ekle" :icon="PrimeIcons.PLUS" class="p-button-success p-button-rounded mr-2" @click="receiptDlg('create')" />
+        <Button label="Sipariş İşlemi Ekle" :icon="PrimeIcons.PLUS" class="p-button-success p-button-rounded mr-2" @click="processStepsDlg('create')" />
         <span class="p-input-icon-left">
           <i class="pi pi-search" />
           <InputText v-model="filters.global.value" placeholder="Ara..." />
         </span>
 
-        <Button :icon="PrimeIcons.REFRESH" class="p-button-rounded p-button-outlined mx-2" @click="fetchReceipts()" />
+        <Button :icon="PrimeIcons.REFRESH" class="p-button-rounded p-button-outlined mx-2" @click="fetchProcessSteps()" />
       </template>
       <Column field="processStepsId" header="Id" sortable> 
         <template #filter="{ filterModel, filterCallback }">
@@ -148,10 +143,8 @@ watch(filters,()=>{
       <Column :exportable="false" style="min-width:8rem">
         <template #body="slotProps">
           <Button :icon="PrimeIcons.PENCIL"
-            class="p-button-primary p-button-rounded p-button-outlined mr-2"  @click="receiptDlg('update',slotProps.data)" />
-          <Button :icon="PrimeIcons.TRASH" class="p-button-rounded p-button-danger p-button-outlined mr-2"  @click="deleteReceipt(slotProps.data)" />
-          <Button :icon="PrimeIcons.CHART_BAR" class="p-button-info p-button-rounded p-button-outlined mr-2"  @click="getReportReceipt(slotProps.data)" />
-       
+            class="p-button-primary p-button-rounded p-button-outlined mr-2"  @click="processStepsDlg('update',slotProps.data)" />
+          <Button :icon="PrimeIcons.TRASH" class="p-button-rounded p-button-danger p-button-outlined mr-2"  @click="deleteProcessSteps(slotProps.data)" />       
         </template>
       </Column>
       <template #empty>
@@ -159,7 +152,6 @@ watch(filters,()=>{
       </template>
     </DataTable>
   </app-base-layout>
-    <ReceiptReportDialog v-model="displayReceiptReportDlg" :receiptId="processStepsModel.processStepsId"></ReceiptReportDialog>
-    <ReceiptDlg v-model="displayBasic" :dialogType="receiptDialogType" :receiptId="selectedProcessSteps.processStepsId" @refreshReceipt="fetchReceipts"/>
+    <ProcessStepsDlg-model="displayBasic" :dialogType="processStepsDlgType" :receiptId="selectedProcessSteps.processStepsId" @refreshReceipt="fetchProcessSteps"/>
     </template>
 

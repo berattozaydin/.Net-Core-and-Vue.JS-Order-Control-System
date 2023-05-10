@@ -1,7 +1,7 @@
 <script setup>
 import { useReceiptStore } from '../stores/receipt';
 import { onMounted } from 'vue';
-import ReceiptsTable from '../components/receipts/ReceiptsTable.vue';
+import ProcessStepsTable from '../components/ProcessSteps/ProcessStepsTable.vue';
 
 
 
@@ -14,6 +14,6 @@ onMounted(async () => {
 
   <template>
     <AppBaseLayout>
-      <ReceiptsTable />
+      <ProcessStepsTable />
     </AppBaseLayout>
   </template>

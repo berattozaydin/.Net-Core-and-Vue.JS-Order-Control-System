@@ -13,20 +13,20 @@
         <div class="grid p-fluid">
           <div class="field col-12 md:col-3">
             <label for="name">Reçete İsmi</label>
-            <InputText v-model="receiptModel.name"></InputText>
-            <small class="p-error" v-if="submited&&!receiptModel.name">Lütfen Değer Giriniz</small> 
+            <InputText v-model="processStepsModel.name"></InputText>
+            <small class="p-error" v-if="submited&&!processStepsModel.name">Lütfen Değer Giriniz</small> 
           </div>
           <div class="field col-12 md:col-3">
             <label for="treatmentTypeId">İşlem Tipi</label>
             <TreatmentType
-              v-model="receiptModel.treatmentTypeId"
+              v-model="processStepsModel.treatmentTypeId"
             ></TreatmentType>
-            <small class="p-error" v-if="submited&&!receiptModel.treatmentTypeId">Lütfen Değer Giriniz</small> 
+            <small class="p-error" v-if="submited&&!processStepsModel.treatmentTypeId">Lütfen Değer Giriniz</small> 
           </div>
           <div class="field col-12 md:col-3">
             <label for="remark">Açıklama</label>
-            <AppTextarea v-model="receiptModel.remark"></AppTextarea>
-            <small class="p-error" v-if="submited&&!receiptModel.remark">Lütfen Değer Giriniz</small> 
+            <AppTextarea v-model="processStepsModel.remark"></AppTextarea>
+            <small class="p-error" v-if="submited&&!processStepsModel.remark">Lütfen Değer Giriniz</small> 
           </div>
         </div>
       </template>
@@ -34,7 +34,7 @@
 
     <h2>Detaylar</h2>
     <DataTable
-      :value="receiptModel?.receiptDetails"
+      :value="processStepsModel?.receiptDetails"
       class="dataTable"
       responsiveLayout="scroll"
     >
@@ -102,11 +102,11 @@ import AppForm from "../app/AppForm.vue";
 import TreatmentType from "../TreatmentType/TreatmentTypeDropdown.vue";
 //import ReceiptDetail from "../ReceiptDetail/ReceiptDetail.vue";
 import { DIALOG_TYPE } from "../../stores/appConst";
-import ReceiptApi from "../../api/receipts.api";
+import ProcessStepsApi from "../../api/processSteps.api";
 import useReceiptDetailApi from "../../api/receiptDetail.api";
 const receiptDetailApi = useReceiptDetailApi();
-const receiptApi = ReceiptApi();
-const receiptModel = ref({receiptDetails: []});
+const processStepsApi = ProcessStepsApi();
+const processStepsModel = ref({receiptDetails: []});
 const displayDetailBasic = ref(false);
 const displayDetailModel = ref({});
 const props = defineProps(["modelValue", "dialogType", "receiptId"]);
@@ -124,43 +124,43 @@ function editReceiptDetails(slotprops) {
   displayDetailBasic.value = true;
 }
 async function addReceiptTable() {
-  if(!receiptModel.value.name||
-    !receiptModel.value.remark||
-    !receiptModel.value.treatmentTypeId){
+  if(!processStepsModel.value.name||
+    !processStepsModel.value.remark||
+    !processStepsModel.value.treatmentTypeId){
       submited.value=true;
       return;
     }
   if (props.dialogType == DIALOG_TYPE.ADD) {
-    await receiptApi.addReceipt(receiptModel.value);
+    await processStepsApi.addProcessSteps(processStepsModel.value);
   }
   if (props.dialogType == DIALOG_TYPE.UPD) {
-    await receiptApi.updateReceipt(receiptModel.value);
+    await processStepsApi.updateProcessSteps(processStepsModel.value);
   }
   showDialog.value=false;
   emits("refreshReceipt",true);
 }
 
 async function deleteReceiptDetails(receiptDetail) {
-  let index = receiptModel.value.receiptDetails.findIndex(
+  let index = processStepsModel.value.receiptDetails.findIndex(
     (x) => x.receiptDetailId == receiptDetail.receiptDetailId
   );
   if (props.dialogType == DIALOG_TYPE.ADD)
-      receiptModel.value.receiptDetails.splice(index, 1);
+      processStepsModel.value.receiptDetails.splice(index, 1);
   if (props.dialogType == DIALOG_TYPE.UPD){
     await receiptDetailApi.deleteReceiptDetail(receiptDetail.receiptDetailId);
     fetchReceiptDetails();
   }
 }
 async function fetchReceiptDetails(){
-  receiptModel.value.receiptDetails= await receiptDetailApi.getReceiptDetail(props.receiptId);
+  processStepsModel.value.receiptDetails= await receiptDetailApi.getReceiptDetail(props.receiptId);
 }
 watch(showDialog, async () => {
   if (props.dialogType == DIALOG_TYPE.ADD) {
-    receiptModel.value = { receiptDetails: [] };
+    processStepsModel.value = { receiptDetails: [] };
   }
   if (props.dialogType == DIALOG_TYPE.UPD) {
     if(showDialog.value==true){
-      receiptModel.value = (await receiptApi.getReceipt(props.receiptId))[0];
+      processStepsModel.value = (await processStepsApi.getProcessSteps(props.receiptId))[0];
     fetchReceiptDetails();
     }
 
@@ -168,7 +168,7 @@ watch(showDialog, async () => {
   emits("update:modelValue", showDialog.value);
 });
 function addReceipDetail(receiptDetail) {
-  receiptModel.value.receiptDetails.push(receiptDetail);
+  processStepsModel.value.receiptDetails.push(receiptDetail);
 }
 watch(
   () => props.modelValue,

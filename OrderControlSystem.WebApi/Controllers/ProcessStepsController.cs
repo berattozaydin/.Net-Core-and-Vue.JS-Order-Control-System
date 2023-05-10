@@ -20,19 +20,19 @@ namespace OrderControlSystemWebApi.Controllers
 
         [HttpPost]
         [LogHandleMiddleware("Reçete Eklendi")]
-        public ReturnResult AddReceipt(OrderControlSystem.DAL.ProcessSteps item)
+        public ReturnResult AddProcessSteps(OrderControlSystem.DAL.ProcessSteps item)
         {
             var res = receiptManager.Add(item);
             return res;
         }
         [HttpGet]
-        public IActionResult GetReceipt([FromQuery] int receiptId)
+        public IActionResult GetProcessSteps([FromQuery] int receiptId)
         {
             var receipt = receiptManager.List(x => x.ProcessStepsId == receiptId);
             return Ok(receipt);
         }
         [HttpGet]
-        public IActionResult GetReceiptList()
+        public IActionResult GetProcessStepssList()
         {
             var list = receiptManager.List();
             return Ok(list);
@@ -45,17 +45,17 @@ namespace OrderControlSystemWebApi.Controllers
         }
         [HttpPost]
         [LogHandleMiddleware("Reçete Güncellendi")]
-        public ReturnResult UpdateReceipt(OrderControlSystem.DAL.ProcessSteps receipt)
+        public ReturnResult UpdateProcessSteps(OrderControlSystem.DAL.ProcessSteps receipt)
         {
             var res = receiptManager.Update(receipt);
             return res;
         }
         [HttpPost]
         [LogHandleMiddleware("Reçete Silindi")]
-        public IActionResult DeleteReceipt(int receiptId)
+        public IActionResult DeleteProcessSteps(int processStepsId)
         {
-            receiptManager.Delete(receiptId);
-            return Ok("Silindi" + receiptId);
+            receiptManager.Delete(processStepsId);
+            return Ok("Silindi" + processStepsId);
         }
 
     }
