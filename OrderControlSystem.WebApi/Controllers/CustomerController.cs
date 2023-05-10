@@ -12,13 +12,16 @@ namespace OrderControlSystemWebApi.Controllers
     public class CustomerController : Controller
     {
         CustomerManager customerManager;
-        public CustomerController(CustomerManager customerManager)
+        MailMgr mailMgr;
+        public CustomerController(CustomerManager customerManager, MailMgr mailMgr)
         {
             this.customerManager = customerManager;
+            this.mailMgr = mailMgr;
         }
         [HttpGet]
         public IActionResult GetCustomerList()
         {
+            mailMgr.MailSend();
             var list = customerManager.List();
             return Ok(list);
         }

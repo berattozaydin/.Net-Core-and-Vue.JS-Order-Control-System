@@ -35,6 +35,7 @@ const filters = ref({
   customerName:{value:"",matchMode:"contains"},
   name:{value:"",matchMode:"contains"},
   orderNumber:{value:"",matchMode:"contains"},
+  barcodeNumber:{value:"",matchMode:"contains"},
 })
 
 const lazyParams=ref({

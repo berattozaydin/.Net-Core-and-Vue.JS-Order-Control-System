@@ -76,6 +76,7 @@ builder.Services.AddSingleton<LogManager>();
 builder.Services.AddScoped<CustomerOrderStatusManager>();
 builder.Services.AddScoped<AuthManager>();
 builder.Services.AddScoped<CustomerManager>();
+builder.Services.AddSingleton<MailMgr>();
 builder.Services.AddHttpContextAccessor();
 
 var key = Encoding.ASCII.GetBytes("qweqewqeqwe123123123qwefdsagag");
