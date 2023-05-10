@@ -6,7 +6,7 @@ import AppTextarea from "../app/AppTextarea.vue";
 import { DIALOG_TYPE } from "../../stores/appConst";
 import AppForm from "../app/AppForm.vue";
 import CustomerDropdown from "../customer/CustomerDropdown.vue";
-import {onMounted, ref, watch} from 'vue';
+import {ref, watch} from 'vue';
 import {dateToIso} from "../../helper";
 import useCustomerOrderApi from "../../api/custormerOrder.api";
 import CustomerOrderStatusDropdown from "./CustomerOrderStatusDropdown.vue";
@@ -18,9 +18,6 @@ const emits = defineEmits(["update:modelValue","customerOrder","refresh","custom
 const customerOrderModel = ref({customerOrderItems:[]});
 const submited = ref(false);
 
-onMounted(async ()=>{
-l
-})
 async function setDefaultCustomerOrder(){
     customerOrderModel.value.orderNumber = await customerOrderApi.getCustomerOrderNumber();
 }

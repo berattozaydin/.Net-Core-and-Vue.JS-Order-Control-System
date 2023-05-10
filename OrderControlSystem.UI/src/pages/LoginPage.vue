@@ -4,11 +4,9 @@ import ProgressSpinner from "primevue/progressspinner";
 import Button from "primevue/button";
 import useAuthStore from "../stores/auth";
 import { version } from '../../package.json';
-import useAuthApi from "../api/auth.api";
 import { computed, ref } from "vue";
 const authStore = useAuthStore();
 const user = ref({});
-const authApi = useAuthApi();
 const authLoading = computed(()=>{
   return authStore.user?.username;
 })

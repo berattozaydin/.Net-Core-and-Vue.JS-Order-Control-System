@@ -14,20 +14,6 @@ import ConfirmDialog from "primevue/confirmdialog";
 import useAuthStore from "./stores/auth";
 import { ref, watch } from 'vue';
 import { useRoute } from "vue-router";
-/*export default {
-  components: {
-    AppMenubar,
-    Toast,
-    ConfirmDialog,
-    LoginView,
-    TabView,
-    TabPanel
-  },
-  setup() {
-    const authStore = useAuthStore();
-    return { authStore };
-  },
-};*/
 const authStore = useAuthStore();
 const isMenuVisible = ref(true);
 const route = useRoute();
