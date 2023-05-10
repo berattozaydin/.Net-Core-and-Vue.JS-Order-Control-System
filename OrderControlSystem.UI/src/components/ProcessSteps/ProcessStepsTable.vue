@@ -21,7 +21,6 @@ const processStepsApi = ProcessStepsApi();
 
 const displayBasic = ref(false);
 const props = defineProps(["modelValue"]);
-const displayReceiptReportDlg = ref(false);
 const processStepsDlgType = ref(null);
 const processStepsModel = ref([]);
 const selectedProcessSteps = ref([]);
@@ -152,6 +151,6 @@ watch(filters,()=>{
       </template>
     </DataTable>
   </app-base-layout>
-    <ProcessStepsDlg-model="displayBasic" :dialogType="processStepsDlgType" :receiptId="selectedProcessSteps.processStepsId" @refreshReceipt="fetchProcessSteps"/>
+    <ProcessStepsDlg v-model="displayBasic" :dialogType="processStepsDlgType" :receiptId="selectedProcessSteps.processStepsId" @refreshReceipt="fetchProcessSteps"/>
     </template>
 

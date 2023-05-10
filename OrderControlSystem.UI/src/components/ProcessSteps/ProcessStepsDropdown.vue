@@ -1,10 +1,10 @@
 <template>
   <Dropdown
-    v-model="selectedReceipt"
-    :options="receiptFilter"
+    v-model="selectedProcessSteps"
+    :options="processSteps"
     optionLabel="name"
-    optionValue="receiptId"
-    placeholder="Reçete Seçiniz"
+    optionValue="processStepsId"
+    placeholder="İşlem Seçiniz"
     :showClear="dropdownShowClear"
   />
 </template>
@@ -12,40 +12,28 @@
 <script setup>
 import { ref, watch,onMounted } from "vue";
 import Dropdown from "primevue/dropdown";
-import useReceiptApi from "../../api/receipts.api";
+import useProcessStepsApi from "../../api/processSteps.api";
 
-const receiptApi = useReceiptApi();
-
-const props = defineProps(["furnanceId"]);
+const processStepsApi = useProcessStepsApi();
 const emits = defineEmits(["update:modelValue"]);
-const selectedReceipt = ref();
+const selectedProcessSteps = ref();
 const dropdownShowClear = ref(false);
-const receipts = ref([]);
-const receiptFilter = ref([]);
+const processSteps = ref([]);
 
 watch(
   () => props.furnanceId,
   async () => {
       dropdownShowClear.value=true;
-        receiptListfilter();
   }
 );
-watch(selectedReceipt, () => {
-  emits("update:modelValue", selectedReceipt.value);
+watch(selectedProcessSteps, () => {
+  emits("update:modelValue", selectedProcessSteps.value);
 });
-function receiptListfilter(){
-  receiptFilter.value=[];
-    for(var i = 0 ; i<receipts.value.length;i++){
-        if(receipts.value[i].furnance.furnanceId == props.furnanceId){
-          receiptFilter.value.push(receipts.value[i]);
-        }
-    }
-}
+
 onMounted(async ()=>{
   await getReceiptList()
-  receiptListfilter()
 })
 async function getReceiptList(){
-  receipts.value = await receiptApi.getReceiptsList();
+  processSteps.value = await processStepsApi.getProcessStepssList();
 }
 </script>

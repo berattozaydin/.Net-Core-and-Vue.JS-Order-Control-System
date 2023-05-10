@@ -1,6 +1,6 @@
 <template>
   <Dialog
-    header="Reçeteler"
+    header="İşlemler"
     position="top"
     v-model:visible="showDialog"
     :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
@@ -12,7 +12,7 @@
       <template #body>
         <div class="grid p-fluid">
           <div class="field col-12 md:col-3">
-            <label for="name">Reçete İsmi</label>
+            <label for="name">İşlem İsmi</label>
             <InputText v-model="processStepsModel.name"></InputText>
             <small class="p-error" v-if="submited&&!processStepsModel.name">Lütfen Değer Giriniz</small> 
           </div>
