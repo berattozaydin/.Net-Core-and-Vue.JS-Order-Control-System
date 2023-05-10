@@ -12,7 +12,6 @@ import { DIALOG_TYPE } from "../../stores/appConst";
 import {watch,ref,computed} from 'vue';
 import useCustomerOrderDetailApi from "../../api/customerOrderDetail.api";
 import CustomerDropdown from "../customer/CustomerDropdown.vue";
-import MatQualityDropdown from "../MatQuality/MatQualityDropdown.vue";
 import TreatmentTypeDropdown from "../TreatmentType/TreatmentTypeDropdown.vue";
 import { mbox } from "../../plugins/dialogService";
 const props = defineProps(["modelValue", "orderDetail", "dialogType","showDialog","customerOrderId","customerId"]);
@@ -168,11 +167,6 @@ const orderDetailModel=ref({});
         <InputText id="name" v-model="orderDetailModel.name"/>
         <small class="p-error" v-if="(submited&&!orderDetailModel.name)">Lütfen Değer Giriniz</small> 
       </div>
-      <!--<div class="p-field">
-        <label for="drawingNo">Çizim Numarası*</label>
-        <InputText id="drawingNo" v-model="orderDetailModel.drawingNo"/>
-        <small class="p-error" v-if="(submited&&!orderDetailModel.drawingNo)">Lütfen Değer Giriniz</small> 
-      </div>-->
       <div class="p-field" style="display:none;">
         <label for="CustomerId">Müşteri Adı*</label>
         <CustomerDropdown id="CustomerId" v-model="orderDetailModel.customerId" disabled/>
@@ -190,11 +184,6 @@ const orderDetailModel=ref({});
       <Fieldset legend="Parça İşlemleri">
       <div class="grid">
         <div class="p-col-12 p-lg-3 p-md-6 p-sm-12">
-      <!--<div class="p-field">
-        <label for="MaterialQualityName">Malzeme Stok Numarası</label>
-        <MatQualityDropdown id="MaterialQualityName" v-model="orderDetailModel.materialQualityId"/>
-        <small class="p-error" v-if="submited&&!orderDetailModel.materialQualityId">Lütfen Değer Giriniz</small> 
-      </div> -->
       <div class="p-field">
         <label for="TreatmentTypeId">İşlem Tipi*</label>
         <TreatmentTypeDropdown id="TreatmentTypeId" v-model="orderDetailModel.treatmentTypeId"/>
@@ -228,21 +217,6 @@ const orderDetailModel=ref({});
         <InputText id="PieceWeight" v-model="orderDetailModel.height"/>
         <small class="p-error" v-if="submited&&!orderDetailModel.height">Lütfen Değer Giriniz</small> 
       </div> 
-     <!-- <div class="p-field">
-        <label for="PieceWeight">Depth</label>
-        <InputText id="PieceWeight" v-model="orderDetailModel.depth"/>
-        <small class="p-error" v-if="submited&&!orderDetailModel.depth">Lütfen Değer Giriniz</small> 
-      </div> 
-      <div class="p-field">
-        <label for="Hrc">Önceki Sertlik(Hrc)*</label>
-        <InputText id="Hrc" v-model="orderDetailModel.hrc"/>
-        <small class="p-error" v-if="submited&&!orderDetailModel.hrc">Lütfen Değer Giriniz</small> 
-      </div>   
-      <div class="p-field">
-        <label for="Hb">Önceki Sertlik(Hb)*</label>
-        <InputText id="Hb" v-model="orderDetailModel.hb"/>
-        <small class="p-error" v-if="submited&&!orderDetailModel.hb">Lütfen Değer Giriniz</small> 
-      </div> -->
     </div>
     </div>
     </Fieldset>

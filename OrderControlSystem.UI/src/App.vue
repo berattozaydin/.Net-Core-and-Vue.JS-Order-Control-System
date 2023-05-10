@@ -12,10 +12,7 @@ import LoginView from "./pages/LoginPage.vue";
 import Toast from "primevue/toast";
 import ConfirmDialog from "primevue/confirmdialog";
 import useAuthStore from "./stores/auth";
-import TabMenu from 'primevue/tabmenu';
 import { ref, watch } from 'vue';
-import OrderPage from "./pages/OrderPage.vue";
-import ReceiptsPage from "./pages/ReceiptsPage.vue";
 import { useRoute } from "vue-router";
 /*export default {
   components: {
@@ -32,8 +29,6 @@ import { useRoute } from "vue-router";
   },
 };*/
 const authStore = useAuthStore();
-const array = ref([{ label: 'Orders', component: OrderPage }, { label: 'Receipts', component: ReceiptsPage }]);
-const activeIndex = ref(0);
 const isMenuVisible = ref(true);
 const route = useRoute();
 watch(() => route.path, () => {

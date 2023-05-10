@@ -25,13 +25,8 @@ const router = createRouter({
     },
     {
       path: "/ProcessSteps.vue",
-      name: "Reçeteler",
+      name: "İşlemler",
       component: () => import("@/pages/ProcessSteps.vue"),
-    },
-    {
-      path: "/materialqualities",
-      name: "Kaliteler",
-      component: () => import("@/pages/MaterialQualityPage.vue"),
     },
     {
       path:"/logs",

@@ -151,6 +151,6 @@ watch(filters,()=>{
       </template>
     </DataTable>
   </app-base-layout>
-    <ProcessStepsDlg v-model="displayBasic" :dialogType="processStepsDlgType" :receiptId="selectedProcessSteps.processStepsId" @refreshReceipt="fetchProcessSteps"/>
+    <ProcessStepsDlg v-model="displayBasic" :dialogType="processStepsDlgType" :processStepsId="selectedProcessSteps.processStepsId" @refreshProcessSteps="fetchProcessSteps"/>
     </template>
 
