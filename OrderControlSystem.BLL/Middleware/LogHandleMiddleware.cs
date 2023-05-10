@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OrderControlSystem.BLL.HandleMiddleware
+namespace OrderControlSystem.BLL.Middleware
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class LogHandleMiddleware : ActionFilterAttribute

@@ -24,8 +24,8 @@ const displayBasic = ref(false);
 const props = defineProps(["modelValue"]);
 const displayReceiptReportDlg = ref(false);
 const receiptDialogType = ref(null);
-const receiptModel = ref([]);
-const selectedReceipt = ref([]);
+const processStepsModel = ref([]);
+const selectedProcessSteps = ref([]);
 const filters = ref({
   global: { value: "", matchMode: "contains" },
   receiptId: {value: "", matchMode: "contains" },
@@ -42,7 +42,7 @@ const lazyParams=ref({
                     filters: filters.value,
                 });
 const fetchReceipts = async () => {
-  receiptModel.value=await receiptApi.getAll(lazyParams.value);
+  processStepsModel.value=await receiptApi.getAll(lazyParams.value);
 }
 onMounted(() => {
    fetchReceipts();
@@ -50,7 +50,7 @@ onMounted(() => {
 
 async function getReportReceipt(item){
   displayReceiptReportDlg.value=true;
-    receiptModel.value=item;
+    processStepsModel.value=item;
 }
 function receiptDlg(cmd,slotprops=null){
   if(cmd === 'create')
@@ -59,7 +59,7 @@ function receiptDlg(cmd,slotprops=null){
   }
   if(cmd === 'update')
   {
-    selectedReceipt.value=slotprops
+    selectedProcessSteps.value=slotprops
     receiptDialogType.value=DIALOG_TYPE.UPD;
   }
   displayBasic.value=true;
@@ -100,22 +100,22 @@ watch(filters,()=>{
     <DataTable :lazy="true" 
           :loading="receiptApi.receiptsLoading.value" 
           class="dataTable" 
-          :value="receiptModel" 
+          :value="processStepsModel" 
           v-model:filters="filters" 
           :paginator="true" 
           :rows="20"
           paginatorPosition="top"
           filterDisplay="row"
-          dataKey="receiptId"
+          dataKey="processStepsId"
           @page="onPage($event)"
           @sort="onSort($event)"
           :sortOrder="1"
           >
       <template #paginatorstart>
-        <h3>Reçeteler</h3>
+        <h3>İşlemler</h3>
       </template>
       <template #paginatorend>
-        <Button label="Reçete Ekle" :icon="PrimeIcons.PLUS" class="p-button-success p-button-rounded mr-2" @click="receiptDlg('create')" />
+        <Button label="Sipariş İşlemi Ekle" :icon="PrimeIcons.PLUS" class="p-button-success p-button-rounded mr-2" @click="receiptDlg('create')" />
         <span class="p-input-icon-left">
           <i class="pi pi-search" />
           <InputText v-model="filters.global.value" placeholder="Ara..." />
@@ -123,7 +123,7 @@ watch(filters,()=>{
 
         <Button :icon="PrimeIcons.REFRESH" class="p-button-rounded p-button-outlined mx-2" @click="fetchReceipts()" />
       </template>
-      <Column field="receiptId" header="Id" sortable> 
+      <Column field="processStepsId" header="Id" sortable> 
         <template #filter="{ filterModel, filterCallback }">
                     <InputText type="text" v-model="filterModel.value" @keydown.enter="filterCallback()"
                                class="p-column-filter" placeholder="Ara..." />
@@ -135,12 +135,6 @@ watch(filters,()=>{
                                class="p-column-filter" placeholder="Ara..." />
                 </template>
       </Column>
-      <Column field="furnaceName" header="Fırın Adı" sortable>
-        <template #filter="{ filterModel, filterCallback }">
-                    <InputText type="text" v-model="filterModel.value" @keydown.enter="filterCallback()"
-                               class="p-column-filter" placeholder="Ara..." />
-                </template>
-      </Column> 
       <Column field="name" header="İsmi" sortable>
         <template #filter="{ filterModel, filterCallback }">
                     <InputText type="text" v-model="filterModel.value" @keydown.enter="filterCallback()"
@@ -165,7 +159,7 @@ watch(filters,()=>{
       </template>
     </DataTable>
   </app-base-layout>
-    <ReceiptReportDialog v-model="displayReceiptReportDlg" :receiptId="receiptModel.receiptId"></ReceiptReportDialog>
-    <ReceiptDlg v-model="displayBasic" :dialogType="receiptDialogType" :receiptId="selectedReceipt.receiptId" @refreshReceipt="fetchReceipts"/>
+    <ReceiptReportDialog v-model="displayReceiptReportDlg" :receiptId="processStepsModel.processStepsId"></ReceiptReportDialog>
+    <ReceiptDlg v-model="displayBasic" :dialogType="receiptDialogType" :receiptId="selectedProcessSteps.processStepsId" @refreshReceipt="fetchReceipts"/>
     </template>
 

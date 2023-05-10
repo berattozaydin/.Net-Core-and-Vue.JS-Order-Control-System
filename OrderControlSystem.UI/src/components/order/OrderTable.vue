@@ -180,6 +180,12 @@ watch(filters,()=>{
                                class="p-column-filter" placeholder="Ara..." />
                 </template>
     </Column>
+    <Column field="barcodeNumber" header = "Barkod Numarası" sortable>
+      <template #filter="{ filterModel, filterCallback }">
+                    <InputText type="text" v-model="filterModel.value" @keydown.enter="filterCallback()"
+                               class="p-column-filter" placeholder="Ara..." />
+                </template>
+    </Column>
     <Column field="customerName" header = "Müşteri Adı" sortable>
       <template #filter="{ filterModel, filterCallback }">
                     <InputText type="text" v-model="filterModel.value" @keydown.enter="filterCallback()"

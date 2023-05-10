@@ -7,7 +7,7 @@ export const useReceiptApi = () => {
   async function getReceipt(receiptId) {
     try {
       receiptsLoading.value = true;
-      let response = await api.get("receipt/getreceipt?receiptId=" + receiptId);
+      let response = await api.get("processSteps/getreceipt?receiptId=" + receiptId);
       console.log("get receipt = ", response.data?.value);
       return response.data?.value;
     } catch (error) {
@@ -20,7 +20,7 @@ export const useReceiptApi = () => {
   async function addReceipt(receipt) {
     try {
       receiptsLoading.value = true;
-      let response = await api.post("receipt/AddReceipt", receipt);
+      let response = await api.post("processSteps/AddReceipt", receipt);
     } catch (error) {
       console.log(error);
       receiptsLoading.value = false;
@@ -32,7 +32,7 @@ export const useReceiptApi = () => {
     try {
       receiptsLoading.value = true;
       let qs = objectToQueryForApi(filter);
-      let response = await api.get("receipt/getreceiptlist");
+      let response = await api.get("processSteps/getreceiptlist");
       receipts.value = response.data?.value;
       return response.data?.value;
       
@@ -46,7 +46,7 @@ export const useReceiptApi = () => {
   async function updateReceipt(willUpdateReceipt) {
     try {
       receiptsLoading.value = true;
-      await api.post("receipt/UpdateReceipt", willUpdateReceipt);
+      await api.post("processSteps/UpdateReceipt", willUpdateReceipt);
     } catch (error) {
       console.log(error);
       receiptsLoading.value = false;
@@ -57,7 +57,7 @@ export const useReceiptApi = () => {
   async function deleteReceipt(receiptId) {
     try {
       receiptsLoading.value = true;
-      await api.post("receipt/DeleteReceipt?receiptId=" + receiptId);
+      await api.post("processSteps/DeleteReceipt?receiptId=" + receiptId);
     } catch (error) {
       console.log(error);
       receiptsLoading.value = false;
@@ -69,7 +69,7 @@ export const useReceiptApi = () => {
     try {
       receiptsLoading.value = true;
       let res;
-      res = await api.get("receipt/GetReceiptDataByCustomerOrderItem?customerOrderItemId=" + customerOrderItemId);
+      res = await api.get("processSteps/GetReceiptDataByCustomerOrderItem?customerOrderItemId=" + customerOrderItemId);
       return res.data?.result;
     } catch (error) {
       console.log(error);
@@ -83,7 +83,7 @@ export const useReceiptApi = () => {
     try {
       receiptsLoading.value = true;
       let res;
-      res = await api.get("receipt/getReceiptData?receiptId=" + receiptId);
+      res = await api.get("processSteps/getReceiptData?receiptId=" + receiptId);
       console.log(res.data);
       return res.data?.result;
     } catch (error) {
@@ -97,7 +97,7 @@ export const useReceiptApi = () => {
     try {
       receiptsLoading.value = true;
       let res;
-      res = await api.post("receipt/ListWithDetail",flatFiltersForApi(data));
+      res = await api.post("processSteps/ListWithDetail",flatFiltersForApi(data));
       console.log(res.data);
       return res.data?.value;
     } catch (error) {

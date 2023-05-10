@@ -35,7 +35,7 @@ namespace OrderControlSystem.BLL.Managers
                     return new ReturnResult
                     {
                         success = 1,
-                        msg = "Reçete Eklendi."
+                        msg = "İşlem Eklendi."
                     };
             }
             else
@@ -43,7 +43,7 @@ namespace OrderControlSystem.BLL.Managers
                 return new ReturnResult
                 {
                     success = 0,
-                    msg = "Hata. Reçete Eklenemedi"
+                    msg = "Hata. İşlem Eklenemedi"
                 };
             }
             
@@ -135,7 +135,7 @@ namespace OrderControlSystem.BLL.Managers
                     return new ReturnResult
                     {
                         success=1,
-                        msg="Reçete Güncellendi."
+                        msg="İşlem  Güncellendi."
                     };
             }
             else
@@ -143,7 +143,7 @@ namespace OrderControlSystem.BLL.Managers
                 return new ReturnResult
                 {
                     success=0,
-                    msg="Hata. Sipariş Güncellenemedi."
+                    msg= "Hata. İşlem Güncellenemedi."
                 };
             }
             

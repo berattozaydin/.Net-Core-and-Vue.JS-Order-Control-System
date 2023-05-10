@@ -82,12 +82,12 @@
       <Button label="Kaydet" icon="pi pi-save" @click="addReceiptTable()" />
     </template>
   </Dialog>
-  <ReceiptDetail
+  <!--<ReceiptDetail
     v-model="displayDetailBasic"
     :receiptItem="displayDetailModel"
     :dialogType="receiptDetailDialogType"
     @addReceiptDetail="addReceipDetail"
-  />
+  />-->
 </template>
 <script setup>
 import Dialog from "primevue/dialog";
@@ -100,7 +100,7 @@ import { watch, ref } from "vue";
 import AppTextarea from "../app/AppTextarea.vue";
 import AppForm from "../app/AppForm.vue";
 import TreatmentType from "../TreatmentType/TreatmentTypeDropdown.vue";
-import ReceiptDetail from "../ReceiptDetail/ReceiptDetail.vue";
+//import ReceiptDetail from "../ReceiptDetail/ReceiptDetail.vue";
 import { DIALOG_TYPE } from "../../stores/appConst";
 import ReceiptApi from "../../api/receipts.api";
 import useReceiptDetailApi from "../../api/receiptDetail.api";

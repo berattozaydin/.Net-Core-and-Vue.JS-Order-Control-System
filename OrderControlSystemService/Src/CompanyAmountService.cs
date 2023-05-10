@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.WebSockets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using MySqlX.XDevAPI.Common;
-using OrderControlSystem.BLL.HandleMiddleware;
+using OrderControlSystem.BLL.Middleware;
 using OrderControlSystem.Core.Types;
 using OrderControlSystem.DAL;
 using System;

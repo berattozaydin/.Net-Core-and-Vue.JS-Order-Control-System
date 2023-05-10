@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OrderControlSystem.BLL.HandleMiddleware
+namespace OrderControlSystem.BLL.Middleware
 {
     public class WebsocketManager
     {

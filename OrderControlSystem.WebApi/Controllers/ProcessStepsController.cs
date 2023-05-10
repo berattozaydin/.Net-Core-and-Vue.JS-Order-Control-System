@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OrderControlSystem.BLL.HandleMiddleware;
+using OrderControlSystem.BLL.Middleware;
 using OrderControlSystem.BLL.Managers;
 using OrderControlSystem.BLL.Models;
 using OrderControlSystem.BLL.Models.FilterModels;
@@ -9,18 +9,18 @@ namespace OrderControlSystemWebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ReceiptController : ControllerBase
+    public class ProcessStepsController : ControllerBase
     {
         readonly ProcessStepsManager receiptManager;
 
-        public ReceiptController(ProcessStepsManager receiptManager)
+        public ProcessStepsController(ProcessStepsManager receiptManager)
         {
             this.receiptManager = receiptManager;
         }
 
         [HttpPost]
         [LogHandleMiddleware("Reçete Eklendi")]
-        public ReturnResult AddReceipt(ProcessSteps item)
+        public ReturnResult AddReceipt(OrderControlSystem.DAL.ProcessSteps item)
         {
             var res = receiptManager.Add(item);
             return res;
@@ -45,7 +45,7 @@ namespace OrderControlSystemWebApi.Controllers
         }
         [HttpPost]
         [LogHandleMiddleware("Reçete Güncellendi")]
-        public ReturnResult UpdateReceipt(ProcessSteps receipt)
+        public ReturnResult UpdateReceipt(OrderControlSystem.DAL.ProcessSteps receipt)
         {
             var res = receiptManager.Update(receipt);
             return res;

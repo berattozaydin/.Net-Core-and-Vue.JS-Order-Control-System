@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OrderControlSystem.BLL.HandleMiddleware;
+using OrderControlSystem.BLL.Middleware;
 using OrderControlSystem.BLL.Managers;
 using OrderControlSystem.Core.Models;
 using OrderControlSystem.DAL;

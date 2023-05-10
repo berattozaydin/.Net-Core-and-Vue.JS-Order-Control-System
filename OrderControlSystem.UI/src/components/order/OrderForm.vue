@@ -67,6 +67,11 @@ watch(()=>customerOrderModel.value.customerId,()=>{
           <small class="p-error" v-if="(submited&&!customerOrderModel.orderNumber)">Lütfen Değer Giriniz</small> 
         </div> 
         <div class="field col-12 md:col-4">
+          <label for="CustomerOrderId">Barkod Numarası</label>
+          <InputText id="customerOrderId" v-model="customerOrderModel.barcodeNumber" disabled></InputText>
+          <small class="p-error" v-if="(submited&&!customerOrderModel.barcodeNumber)">Lütfen Değer Giriniz</small> 
+        </div> 
+        <div class="field col-12 md:col-4">
           <label for="customerId">Müşteri Adı</label>
           <CustomerDropdown id="customerId" v-model="customerOrderModel.customerId"></CustomerDropdown>
           <small class="p-error" v-if="submited&&!customerOrderModel.customerId">Lütfen Değer Giriniz</small> 

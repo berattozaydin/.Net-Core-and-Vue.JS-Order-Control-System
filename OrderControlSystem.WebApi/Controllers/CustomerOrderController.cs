@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OrderControlSystem.BLL.HandleMiddleware;
+using OrderControlSystem.BLL.Middleware;
 using OrderControlSystem.BLL.Managers;
 using OrderControlSystem.BLL.Models;
 using OrderControlSystem.BLL.Models.FilterModels;
