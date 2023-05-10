@@ -11,7 +11,7 @@ namespace OrderControlSystem.DAL
         public string LogMethod { get; set; }
         public int? LogStatusCode { get; set; }
         public string LogPath { get; set; }
-        public string MachineName { get; set; }
+        public string MachineName { get; set; } = Environment.MachineName;
         public DateTime CreatedDate { get; set; }
     }
 }
