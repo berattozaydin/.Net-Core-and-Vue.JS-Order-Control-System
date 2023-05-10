@@ -9,20 +9,19 @@ using System.Threading.Tasks;
 
 namespace OrderControlSystem.BLL.Middleware
 {
-    public class MailMgr
+    public static class MailMgr
     {
         static MailModelDto mailModelDto = new MailModelDto();
         static SmptModelDto smptModelDto = new SmptModelDto();
-        SmptSettingDto smptSettingDto = new SmptSettingDto();
-        public MailMgr() { }    
-        public void MailSetting()
+        static SmptSettingDto smptSettingDto = new SmptSettingDto();
+        public static void MailSetting()
         {
             mailModelDto.From = new MailAddress(smptSettingDto.SmptEmailSetting);
             mailModelDto.To.Add(new MailAddress("berattozaydin@gmail.com"));
             mailModelDto.IsBodyHtml = true;
             
         }
-        public void SmptSetting()
+        public static  void SmptSetting()
         {
             
             smptModelDto.Port = smptSettingDto.SmptPortSetting;
@@ -32,7 +31,7 @@ namespace OrderControlSystem.BLL.Middleware
             smptModelDto.Credentials = new NetworkCredential(smptSettingDto.SmptEmailSetting, smptSettingDto.SmptPasswordSetting);
 
         }
-        public void MailSend()
+        public static void MailSend()
         {
             MailSetting();
             SmptSetting();

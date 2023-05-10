@@ -12,11 +12,6 @@ namespace OrderControlSystem.BLL.Middleware
     public class WebsocketManager
     {
 
-        public WebsocketManager()
-        {
-
-
-        }
 
         public async static Task SendAsync(WebSocket webSocket, string ms = null)
         {
