@@ -24,9 +24,9 @@ const router = createRouter({
       component: () => import("@/pages/AccountPage.vue"),
     },
     {
-      path: "/receipts",
+      path: "/ProcessSteps.vue",
       name: "Reçeteler",
-      component: () => import("@/pages/ReceiptsPage.vue"),
+      component: () => import("@/pages/ProcessSteps.vue"),
     },
     {
       path: "/materialqualities",

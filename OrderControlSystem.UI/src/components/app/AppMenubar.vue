@@ -43,7 +43,7 @@ export default {
       {
         label: "İşlem Adımları",
         icon: PrimeIcons.LIST, 
-        to: "/receipts",
+        to: "/ProcessSteps.vue",
       }, 
       
     ];

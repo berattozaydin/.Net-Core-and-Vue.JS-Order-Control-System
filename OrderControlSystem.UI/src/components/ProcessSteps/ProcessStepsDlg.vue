@@ -167,7 +167,7 @@ watch(showDialog, async () => {
   } 
   emits("update:modelValue", showDialog.value);
 });
-function addReceipDetail(receiptDetail) {
+function addReceiptDetail(receiptDetail) {
   processStepsModel.value.receiptDetails.push(receiptDetail);
 }
 watch(
