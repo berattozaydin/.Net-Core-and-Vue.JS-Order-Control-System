@@ -10,7 +10,7 @@ import Toolbar from "primevue/toolbar";
 import useAuthStore from "../../stores/auth";
 import { DIALOG_TYPE,CUSTOMER_ORDER_STATUS } from "../../stores/appConst";
 import {ref,onMounted, watch} from "vue";
-
+import { HubConnectionBuilder,LogLevel } from "@microsoft/signalr";
 import AppInfoEmpty from "../app/AppInfoEmpty.vue";
 import OrderDialog from "./OrderDialog.vue";
 import OrderDetailSideBar from "../orderDetail/OrderDetailSideBar.vue";
@@ -29,6 +29,10 @@ const orderModel=ref([]);
 const statusCounts = ref([]);
 const activeIndexCustomerOrder = ref(10);
 const totalRecords = ref(null);
+const connection = ref(new HubConnectionBuilder()
+  .withUrl("/websocket")
+  .configureLogging(LogLevel.Information)
+  .build());
 const filters = ref({
   global: { value: "", matchMode:"contains" },
   customerOrderId:{value:"",matchMode:"contains"},
@@ -52,7 +56,15 @@ const lazyParams=ref({
 
 onMounted(() => {
   fetchOrders();
+  connectHub();
 })
+async function connectHub(){
+  try{
+    await connection.value.start();
+  }catch(err){
+    console.log(err);
+  }
+}
   async function fetchOrders(item) {
     let returnResult = [];
     returnResult = await customerOrderApi.getAll(lazyParams.value);

@@ -7,6 +7,7 @@ using OrderControlSystem.DAL;
 using OrderControlSystem.DAL.Concrete;
 using System.Text;
 using System.Text.Json.Serialization;
+using OrderControlSystem.BLL.HubManager;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -129,8 +130,6 @@ app.UseCors(builder =>
 });
 /*--------------------------------Middlewares-----------------------------------------*/
 
-var wsOptions = new WebSocketOptions { KeepAliveInterval = TimeSpan.FromSeconds(60), ReceiveBufferSize = 4 * 1024 };
-app.UseWebSockets(wsOptions);
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseRouting();
@@ -138,35 +137,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 app.MapControllers();
+app.MapHub<HubMgr>("/websocket");
 
-
-var delaySetting = int.Parse(builder.Configuration["Settings:WebSocketDelay"]);
-
-app.Use(async (context, next) =>
-{
-    if (context.WebSockets.IsWebSocketRequest)
-    {
-        if (context.Request.Path.Value?.Substring(0, 4) == "/ws/")
-        {
-            using var webSocket = await context.WebSockets.AcceptWebSocketAsync();
-            while (true)
-            {
-                if (context.Request.Path.Value.EndsWith(@"/customerOrders"))
-                     await WebsocketManager.SendAsync(webSocket, context.Request.Path);
-
-                await Task.Delay(delaySetting);
-            }
-        }
-        else
-        {
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-        }
-    }
-    else
-    {
-        await next(context);
-    }
-});
 await app.RunAsync();
 
 
